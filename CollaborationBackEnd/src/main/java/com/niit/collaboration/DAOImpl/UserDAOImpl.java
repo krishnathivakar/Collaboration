@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.niit.collaboration.DAO.UserDAO;
+import com.niit.collaboration.model.Blog;
 import com.niit.collaboration.model.User;
 
 
@@ -56,10 +57,16 @@ public class UserDAOImpl implements UserDAO {
 		if (listUser != null && !listUser.isEmpty()){
 			return listUser.get(0);
 		}
-		return null;*/
-		User user = (User) sessionFactory.getCurrentSession().get(User.class, id);
+		return null;
+		Blog blogListByID = (Blog) sessionFactory.getCurrentSession().get(Blog.class, id);
+
+		return blogListByID;
+
+		*
+		*/
+		User userById = (User) sessionFactory.getCurrentSession().get(User.class, id);
 		 
-		 return user;
+		 return userById;
 	}
 	
 	@Transactional
@@ -80,9 +87,18 @@ public class UserDAOImpl implements UserDAO {
 	@Transactional
 	public User getByEmail(String email) {
 		// TODO Auto-generated method stub
-		User user = (User) sessionFactory.getCurrentSession().get(User.class, email);
+		User userByEmail = (User) sessionFactory.getCurrentSession().get(User.class, email);
 		 
-		 return user;
+		 return userByEmail;
+		/*String hql = "from User where email =" + "'"+ email +"'";
+		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<User> listUser = (List<User>) query.list();
+		
+		if (listUser != null && !listUser.isEmpty()){
+			return listUser.get(0);
+		}
+		return null;*/
 	}
 
 	@Transactional

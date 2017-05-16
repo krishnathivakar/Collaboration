@@ -32,14 +32,32 @@ public class BlogDAOImpl implements BlogDAO {
 		Blog blogListByID = (Blog) sessionFactory.getCurrentSession().get(Blog.class, id);
 
 		return blogListByID;
+		/*String hql = "from Blog where id ='" + id + "'";
+		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Blog> listBlog = (List<Blog>) query.list();
+
+		if (listBlog != null && !listBlog.isEmpty()) {
+			return listBlog.get(0);
+		}
+		return null;*/
 
 	}
 
 	@Transactional
 	public Blog getByTitle(String title) {
-		Blog blogListByID = (Blog) sessionFactory.getCurrentSession().get(Blog.class, title);
+		/*Blog blogListByID = (Blog) sessionFactory.getCurrentSession().get(Blog.class, title);
 
-		return blogListByID;
+		return blogListByID;*/
+		String hql = "from Blog where title ='" + title + "'";
+		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Blog> listBlog = (List<Blog>) query.list();
+
+		if (listBlog != null && !listBlog.isEmpty()) {
+			return listBlog.get(0);
+		}
+		return null;
 
 	}
 
