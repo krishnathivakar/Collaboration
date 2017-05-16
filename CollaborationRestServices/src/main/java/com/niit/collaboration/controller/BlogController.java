@@ -35,18 +35,18 @@ public class BlogController {
 		return blogDAO.list();
 	}
 
-	@GetMapping("/blogs/{id}")
+	@GetMapping("/blog/{id}")
 	public ResponseEntity getBlog(@PathVariable("id") int id) {
 
 		Blog blog = blogDAO.get(id);
-		if (blog == null) {
+		/*if (blog == null) {
 			return new ResponseEntity("No Blog found for ID " + id, HttpStatus.NOT_FOUND);
-		}
+		}*/
 
 		return new ResponseEntity(blog, HttpStatus.OK);
 	}
 	
-	@GetMapping("/blogs/{title}")
+	@GetMapping("/blogByTitle/{title}")
 	public ResponseEntity getBlog(@PathVariable("title") String title) {
 
 		Blog blog = blogDAO.getByTitle(title);
