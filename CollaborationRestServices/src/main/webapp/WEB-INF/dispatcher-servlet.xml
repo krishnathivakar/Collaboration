@@ -10,13 +10,13 @@
 				xmlns="http://www.springframework.org/schema/beans">
 
 	<context:component-scan base-package="com.niit.collaboration" />
-
+   
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property value="org.springframework.web.servlet.view.JstlView" name="viewClass" />
 		<property value="/WEB-INF/views/" name="prefix" />
 		<property value=".html" name="suffix" />
 	</bean>
-
+     
 	<bean
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
 		id="multipartResolver" />

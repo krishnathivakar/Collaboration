@@ -31,7 +31,7 @@ public class BlogController {
 	}
 
 	@GetMapping("/blogs")
-	public List getCustomers() {
+	public List<Blog> getCustomers() {
 		return blogDAO.list();
 	}
 
@@ -79,7 +79,7 @@ public class BlogController {
 	@PutMapping("/blogs/{id}")
 	public ResponseEntity updateBlog(@PathVariable int id, @RequestBody Blog blog) {
 
-		blog = blogDAO.saveOrUpdate(blog);
+		 blogDAO.saveOrUpdate(blog);
 
 		if (null == blog) {
 			return new ResponseEntity("No Blog found for id " + id, HttpStatus.NOT_FOUND);

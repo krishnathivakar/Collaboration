@@ -1,6 +1,8 @@
 package com.niit.collaboration.controller;
 
-import java.util.*;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,10 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.niit.collaboration.DAO.UserDAO;
-import com.niit.collaboration.model.Blog;
+import com.niit.collaboration.DAOImpl.UserDAO;
 import com.niit.collaboration.model.User;
 
 @RestController
@@ -20,13 +26,7 @@ public class UserController {
 	@Autowired
 	private UserDAO userDAO;
 
-	public UserDAO getUserDAO() {
-		return userDAO;
-	}
-
-	public void setUserDAO(UserDAO userDAO) {
-		this.userDAO = userDAO;
-	}
+	
 	/*
 	 * @Autowired HttpSession session;
 	 */
@@ -75,5 +75,49 @@ public class UserController {
 
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-
-}
+	@PostMapping("/user")
+	public ResponseEntity save(@RequestBody User user)
+	{
+		userDAO.save(user);
+		return new ResponseEntity(user, HttpStatus.OK);
+	}
+	@PutMapping("/user")  
+	public ResponseEntity update(@RequestBody User user)
+	{
+		userDAO.saveOrUpdate(user);
+		return new ResponseEntity(user, HttpStatus.OK);
+	}	
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ResponseEntity<?> login(@RequestBody User user,HttpSession session) {
+		System.out.println(user.getPassword());
+		System.out.println(user.getEmail());
+		User validUser = userDAO.login(user);
+		if (validUser == null) {
+			Error error = new Error("Invalid credentials.. please enter valid username and password");
+			return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
+		} else {
+			session.setAttribute("user", validUser);
+			
+			
+			System.out.println(validUser.getEmail());
+			System.out.println(validUser.getName());
+			return new ResponseEntity<User>(validUser, HttpStatus.OK);
+		}
+	}
+	@RequestMapping(value="/logout",method=RequestMethod.PUT)
+	public ResponseEntity<?> logout(HttpSession session){
+		User user=(User)session.getAttribute("user");
+		if(user==null){
+			Error error =new Error("Unauthorized user.. Please Login..");  
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		else{
+			//user.setOnline(false);
+			userDAO.saveOrUpdate(user);
+			session.removeAttribute("user");
+			session.invalidate();
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		}
+	}
+}  
