@@ -62,15 +62,15 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	@Transactional
-	public Blog save(Blog blog) {
+	public void save(Blog blog) {
 		// TODO Auto-generated method stub
-		return (Blog) sessionFactory.getCurrentSession().save(blog);
+		sessionFactory.getCurrentSession().save(blog);
 	}
 
 	@Transactional
-	public Blog saveOrUpdate(Blog blog) {
+	public void saveOrUpdate(Blog blog) {
 		sessionFactory.getCurrentSession().saveOrUpdate(blog);
-		return blog;
+		
 		// TODO Auto-generated method stub
 		
 	}

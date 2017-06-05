@@ -22,7 +22,11 @@ public class Job {
 	
 	private String title;
 	
-	private String description;
+	private String companyName;
+	
+	private String technicalKnowledge;
+	
+	private String email;
 	
 	@Generated(value = { "" })
 	@Temporal(javax.persistence.TemporalType.DATE)
@@ -49,14 +53,6 @@ public class Job {
 		this.title = title;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public Date getAddDate() {
 		return addDate;
 	}
@@ -80,6 +76,31 @@ public class Job {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public String getTechnicalKnowledge() {
+		return technicalKnowledge;
+	}
+
+	public void setTechnicalKnowledge(String technicalKnowledge) {
+		this.technicalKnowledge = technicalKnowledge;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	
 	
 }

@@ -2,15 +2,15 @@ package com.niit.collaboration.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-@Component
+
 @Entity
-@Table(name = "userInfo")
+@Table(name = "userinfo")
+@Component
 public class User {
 
 	@Id
@@ -23,7 +23,7 @@ public class User {
 	
 	private String password;
 	
-	private String email; //it is not required if you want to use email as id
+	private String email; 
 
 	private String address;
 	

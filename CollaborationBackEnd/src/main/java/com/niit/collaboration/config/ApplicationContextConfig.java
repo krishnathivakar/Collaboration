@@ -20,13 +20,13 @@ import com.niit.collaboration.DAO.EventDAO;
 import com.niit.collaboration.DAO.ForumDAO;
 import com.niit.collaboration.DAO.FriendDAO;
 import com.niit.collaboration.DAO.JobDAO;
-import com.niit.collaboration.DAO.UserDAO;
 import com.niit.collaboration.DAOImpl.BlogDAOImpl;
 import com.niit.collaboration.DAOImpl.ChatDAOImpl;
 import com.niit.collaboration.DAOImpl.EventDAOImpl;
 import com.niit.collaboration.DAOImpl.ForumDAOImpl;
 import com.niit.collaboration.DAOImpl.FriendDAOImpl;
 import com.niit.collaboration.DAOImpl.JobDAOImpl;
+import com.niit.collaboration.DAOImpl.UserDAO;
 import com.niit.collaboration.DAOImpl.UserDAOImpl;
 import com.niit.collaboration.model.Blog;
 import com.niit.collaboration.model.Chat;
@@ -71,7 +71,6 @@ public class ApplicationContextConfig {
 
 		properties.put("hibernate.dialect", "org.hibernate.dialect.OracleDialect");
 		properties.put("hibernate.hbm2ddl.auto", "update");
-
 		properties.put("hibernate.show_sql", "true");
 		properties.put("hibernate.format_sql", "true");
 		return properties;

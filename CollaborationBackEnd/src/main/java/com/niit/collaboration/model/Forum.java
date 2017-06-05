@@ -3,6 +3,7 @@ package com.niit.collaboration.model;
 import java.util.Date;
 
 import javax.annotation.Generated;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,6 +22,8 @@ public class Forum {
 	private int forumId;
 	
 	private String forumTitle;
+	
+	@Column(length = 2000)
 	private String forumContent;
 	private int userId;
 	private String userName;
@@ -76,6 +79,8 @@ public class Forum {
 	public void setAddDate(Date addDate) {
 		this.addDate = addDate;
 	}
+	
+	
 
 	
 }

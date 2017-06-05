@@ -12,9 +12,9 @@ public interface BlogDAO {
 	
 	public Blog getByTitle(String title);
 
-	public Blog save(Blog blog);
+	public void save(Blog blog);
 	
-	public Blog saveOrUpdate(Blog blog);
+	public void saveOrUpdate(Blog blog);
 
 	public void delete(int id);
 

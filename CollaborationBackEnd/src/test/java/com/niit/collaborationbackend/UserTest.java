@@ -8,7 +8,7 @@ import com.niit.collaboration.DAO.EventDAO;
 import com.niit.collaboration.DAO.ForumDAO;
 import com.niit.collaboration.DAO.FriendDAO;
 import com.niit.collaboration.DAO.JobDAO;
-import com.niit.collaboration.DAO.UserDAO;
+import com.niit.collaboration.DAOImpl.UserDAO;
 import com.niit.collaboration.model.Blog;
 import com.niit.collaboration.model.Chat;
 import com.niit.collaboration.model.Event;
@@ -71,7 +71,7 @@ public class UserTest {
 		friend.setUserName("thiva");
 		
 		job.setTitle("Accenture Interview");
-		job.setDescription("weekly celebration");
+		job.setCompanyName("CTS");
 		job.setQualification("B.e/B.tech");
 		job.setStatus("valid");
 		
