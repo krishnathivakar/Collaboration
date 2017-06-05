@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>Web Browser</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -12,16 +12,21 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
 <script type="text/javascript" src="app.js"></script>
 <script type="text/javascript" src="User/UserController.js"></script>
+<script type="text/javascript" src="Blog/BlogController.js"></script>
+<script type="text/javascript" src="Forum/ForumController.js"></script>
+<script type="text/javascript" src="Job/JobController.js"></script>
 <script type="text/javascript" src="User/UserService.js"></script>
-</head>
+<script type="text/javascript" src="Blog/BlogService.js"></script>
+<script type="text/javascript" src="Forum/ForumService.js"></script>
+<script type="text/javascript" src="Job/JobService.js"></script>
 
 <style>
-body {
+ body {
 	background:
 		url('http://www.wallpaperup.com/uploads/wallpapers/2012/10/21/20181/cad2441dd3252cf53f12154412286ba0.jpg');
 	padding: 50px;
 }
-
+ 
 #login-dp {
 	min-width: 250px;
 	padding: 14px 14px 0;
@@ -86,8 +91,10 @@ body {
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
 	rel="stylesheet">
+	</head>
 <body ng-app="myApp">
-
+{{currentUser.id}}
+{{currentUser.name}}
 	<nav class="navbar navbar-default navbar-inverse" role="navigation">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -105,14 +112,20 @@ body {
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#register">Register</a></li>
-					<li><a href="#">Link</a></li>
+					<li><a href="#blog">Blog</a></li>
+					
+					<li><a href="#forum">Forum</a></li>
+					<li><a href="#job">Job</a></li>
+					<li><a href="#home">Home</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+						data-toggle="dropdown">Views <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
+							<!-- <li><a href="#">Action</a></li> -->
+							<li><a href="#viewB">viewBlog</a></li>
+							<li><a href="#viewJ">viewJob</a></li>
+							<li><a href="#viewF">viewForum</a></li>
+							<!-- <li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li> -->
 							<li class="divider"></li>
 							<li><a href="#">Separated link</a></li>
 							<li class="divider"></li>
@@ -126,8 +139,11 @@ body {
 					<button type="submit" class="btn btn-default">Submit</button>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
-					<li><p class="navbar-text">Already have an account?</p></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+				<li><a href="#login">Login</a></li>
+				<li class="active"><a href="#register">Register</a></li>
+				<li><a href="#logout">LogOut</a></li>
+					<!-- <li><p class="navbar-text">Already have an account?</p></li> -->
+					<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
 						<ul id="login-dp" class="dropdown-menu">
 							<li>
@@ -172,7 +188,7 @@ body {
 									</div>
 								</div>
 							</li>
-						</ul></li>
+ -->						</ul></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->

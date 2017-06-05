@@ -2,32 +2,85 @@ var app = angular.module('myApp', [ 'ngRoute', 'ngCookies' ]);
 
 app.config(function($routeProvider) {
 
-	$routeProvider 
- 
-	/*.when('/', {
-		templateUrl : 'index.html'
-	})
- */
-	.when('/login', {
-		templateUrl : 'User/login.html'
+	$routeProvider
 
+	 /* .when('/', { templateUrl : 'index.html' })*/
+	 
+
+	.when('/home',{
+		templateUrl : 'Home/Home.html',
+		controller : 'UserController'
+		
+	})
+	
+	.when('/viewBlog',{
+		templateUrl : 'Blog/Detail.html'
+		
+	})
+	
+
+	
+	.when('/login', {
+		templateUrl : 'User/Login.html',
+		controller : 'UserController',
+		controllerAs : 'uc'
+	})
+
+	.when('/logout', {
+		templateUrl : 'User/login.html',
+		controller : 'UserController',
+		controllerAs : 'uc'
 	})
 
 	.when('/register', {
 		templateUrl : 'User/Register.html',
 		controller : 'UserController',
-		controllerAs: 'ctrl'
+		controllerAs : 'uc'
 	})
-	/*.when('/blog', {
-		templateUrl : 'blog/blogform.html'
+	
+	.when('/blog', {
+		templateUrl : 'Blog/blogform.html',
+		controller : 'BlogController',
+		controllerAs : 'bc'
 
 	})
-	.when('/forum', {
-		templateUrl : 'forum/forum.html',
-		controller  : 'ForumController',
-		controllerAs: 'ctrl'
+
+	.when('/viewB', {
+		templateUrl : 'Blog/ViewBlog.html',
+		controller : 'BlogController',
+		controllerAs : 'bc'
+
 	})
-*/	.otherwise({
-		redirectTo : '/login'
+
+	.when('/forum', {
+		templateUrl : 'Forum/forum.html',
+		controller : 'ForumController',
+		controllerAs : 'fc'
+
+	})
+
+	.when('/viewF', {
+		templateUrl : 'Forum/viewForum.html',
+		controller : 'ForumController',
+		controllerAs : 'fc'
+
+	})
+
+	.when('/job', {
+		templateUrl : 'Job/Job.html',
+		controller : 'JobController',
+		controllerAs : 'jc'
+
+	})
+
+	.when('/viewJ', {
+		templateUrl : 'Job/viewJob.html',
+		controller : 'JobController',
+		controllerAs : 'jc'
+
+	})
+
+	.otherwise({
+	/* redirectTo : '/' */
 	});
 });

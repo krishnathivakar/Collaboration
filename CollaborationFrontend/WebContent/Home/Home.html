@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style type="text/css">
+.abc:hover{
+padding-left: 1.5em;
+-moz-box-shadow: 0 0 10px #ccc; 
+-webkit-box-shadow: 0 0 10px #ccc; 
+box-shadow: 0 0 10px #ccc; 
+    background-color: #F5F5F9;
+}
+</style>
+</head>
+<body style="padding-left: 0em;">
+<div  ng-controller="UserController as uc">
+{{id}}
+{{name}}
+<div class="column-content-region col-sm-3"  ng-controller="ForumController as fc">
+<h3>Forums</h3>
+<div class="abc" ng-repeat="for in fc.forums" ng-click="fc.get(u)">
+<h1><span ng-bind="for.forumTitle"></span></h1><h6>Created On:<span ng-bind="for.addDate"></span></h6>
+<h5><span ng-bind="for.forumContent" | limitTo : 25"></span></h5>
+<a href="#dForum"><input type="button" name="button"  value="Read More"/></a>
+<hr>
+</div>
+</div>
+
+<div class="column-content-region col-sm-3" style="margin-left: 4em;" ng-controller="BlogController as bc">
+<h3>Blogs</h3>
+<div class="abc" ng-repeat="u in bc.blogs">
+<h1><span ng-bind="u.title">></span></h1><h6>Authored By:<span ng-bind="u.addDate"></span></h6>
+<h3><span ng-bind="u.description"></span></h3>
+<a href="" ng-click="bc.get(u)"><input type="button" name="button"  value="Read More"/></a>
+<hr>
+</div>
+</div>
+
+<div class="column-content-region col-sm-3" style="margin-left: 4em;" ng-controller="JobController as jc">
+<h3>Jobs</h3>
+<div class="abc" ng-repeat="jo in jc.jobs"ng-click="jc.get(u)"> 
+<h1><span ng-bind="jo.title"></span></h1><h6>Company Name:<span ng-bind="u.addDate"></span></h6>
+<h3><span ng-bind="jo.description"></span></h3><h3><span ng-bind="jo.status"></span></h3>
+<a href="#detail"><input type="button" name="button"  value="Read More"/></a>
+<hr>
+</div>
+</div></div>
+</body></html>

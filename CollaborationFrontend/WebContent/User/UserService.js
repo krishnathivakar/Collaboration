@@ -1,10 +1,10 @@
 'use strict';
  
 app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$rootScope){
-	
+	  
 	console.log("UserService...")
 	
-	var BASE_URL='http://localhost:8081/CollaborationBackEnd'
+	var BASE_URL='http://localhost:8083/CollaborationRestServices'
 		
     return {
          
@@ -16,9 +16,9 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                                         return response.data;
                                     }, 
                                    null
-                            );
+                            );  
             },
-            
+              
             myProfile: function() {
             	console.log("calling myProfile ")
                     return $http.get(BASE_URL+'/myProfile')
@@ -89,26 +89,25 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                 return $http.get(BASE_URL+'/user/logout')
                         .then(
                                 function(response){
+                                	
                                     return response.data;
                                 }, 
                               null
                         );
-        },
+        },    
         
         
             
-            authenticate: function(user){
-            	   console.log("Calling the method authenticate with the user :"+user)
+            login: function(user){
+            	   console.log("Calling the method login with the user :"+user)
           		 
-                return $http.post(BASE_URL+'/login',user)
-                        .then(
-                                function(response){
-                                    return response.data;   //user json object
+                return $http.post(BASE_URL+'/login',user).then(function(response){
+                                    return response;   //user json object
                                 }, 
                                null
                         );
         }
          
     };
- 
+      
 }]);

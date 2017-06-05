@@ -1,0 +1,29 @@
+
+ 
+ <h4 style="float: right; margin: 0px 0px 0px 0px;"><a href="#createBlog">Create New Job</a></h4>
+
+
+<div class="row "ng-repeat="jo in jc.jobs">
+
+
+  <div class="viewJob" style="margin-left:2em; white-space: nowrap;">
+
+
+   <h3 style="margin-left: 0.5em; float: left; color: green;"><span ng-bind="jo.title"></span></h3>
+
+   <a ng-click="blog.edit(jo.id)"><span class="glyphicon glyphicon-pencil editContent"></span></a>
+   <a  ng-click="blog.remove(jo.id)" ><span class="glyphicon glyphicon-trash editContent"></span></a>
+   <hr style="clear: both;" />
+ 
+
+  <div>
+   <h4><span ng-bind="jo.status"></span></h4>
+  </div>
+  <hr style="margin-top: 3em;">
+  <span ng-bind="jo.description"></span>...
+  <hr style="margin-top: 0em;">
+  <div class="desc">
+  <!-- <button type="button" ng-click="blog.get(u)" style="float: right;">Read More ></button> -->
+  </div>
+ </div>
+</div>
