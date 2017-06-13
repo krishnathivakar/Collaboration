@@ -14,7 +14,7 @@ app.controller('JobController',['$scope','JobService','$location','$rootScope','
 
 							self.submit = submit;
 						    self.update = update;
-						    
+						    self.get = get;
 						    
 							
 							fetchAllJobs();
@@ -81,7 +81,14 @@ app.controller('JobController',['$scope','JobService','$location','$rootScope','
 							// this.fetchAllJobs(); //calling the method    
 
 							// better to call fetchAllJobs -> after login ???
-
+							function get(job){
+								$scope.jv=job;
+								console.log($scope.jv);
+								$rootScope.viewJob=$scope.jv;
+								$location.path("/viewJob");
+								
+								
+							};
 							
   
 							 function submit() {

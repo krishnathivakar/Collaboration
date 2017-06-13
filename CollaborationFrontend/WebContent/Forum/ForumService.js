@@ -5,7 +5,7 @@ app.service('ForumService', ['$http','$q','$rootScope',
 
 			console.log("ForumService...")
 
-			var BASE_URL = 'http://localhost:8083/CollaborationRestServices'
+			var BASE_URL = 'http://localhost:8083/RestServices'
 
 				
 				 var factory = {

@@ -4,11 +4,11 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
-
+<body ng-controller="UserController As uc">
+ 
 
 <div class="container">
-	<div ng-controller="UserController as ctrl">
+	
 
 	<div ng-show='ctrl.user.errorMessage'>
 		<div class="alert alert-danger fade in">
@@ -19,7 +19,7 @@
 			<h1 class="well">Login Form</h1>
 			<div class="col-lg-12 well">
 				<div class="row">
-					<form name="form" ng-submit="uc.login()" role="form">
+					<form name="form" ng-submit="uc.login()" role="form" method="post">
 						<div class="col-sm-12">
 							<div class="row" ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
 								
@@ -40,13 +40,12 @@
 
 
 
-							<button type="submit" class="btn btn-lg btn-info" ng-click="login()">Submit</button>
+							<button type="submit" class="btn btn-lg btn-info" >Submit</button>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div></div>
-	</div>
 
 
 

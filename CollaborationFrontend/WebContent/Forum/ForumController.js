@@ -18,7 +18,7 @@ app.controller('ForumController', ['$scope','ForumService','$location','$rootSco
 			
 			self.submit = submit;
 		    self.update = update;
-		    
+		    self.get = get;
 		
 			fetchAllForums();
 			reset();
@@ -76,6 +76,16 @@ app.controller('ForumController', ['$scope','ForumService','$location','$rootSco
 
 			// better to call fetchAllForums -> after login ???
 
+			function get(forum){
+				$scope.fv=forum;
+				console.log($scope.fv);
+				$rootScope.viewForumm=$scope.fv;
+				$location.path("/viewForum");
+				
+				
+			};
+			
+			
 			 function submit() {
 				{
 					console.log('Saving New Forum', self.forum);

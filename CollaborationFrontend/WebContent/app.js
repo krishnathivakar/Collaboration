@@ -1,35 +1,42 @@
-var app = angular.module('myApp', [ 'ngRoute', 'ngCookies' ]);
+var app = angular.module('krishna', [ 'ngRoute', 'ngCookies' ]);
 
 app.config(function($routeProvider) {
 
 	$routeProvider
 
-	 /* .when('/', { templateUrl : 'index.html' })*/
-	 
+	 .when('/', { templateUrl : 'index.html' }) 
 
-	.when('/home',{
-		templateUrl : 'Home/Home.html',
-		controller : 'UserController'
-		
+	.when('/home', {
+		templateUrl : 'Home/Home.html'
+
 	})
-	
-	.when('/viewBlog',{
+
+	.when('/viewBlog', {
 		templateUrl : 'Blog/Detail.html'
-		
-	})
-	
 
-	
+	})
+
+	.when('/viewForum', {
+		templateUrl : 'Forum/Detail.html'
+
+	})
+
+	.when('/viewJob', {
+		templateUrl : 'Job/Detail.html'
+
+	})
+
 	.when('/login', {
 		templateUrl : 'User/Login.html',
 		controller : 'UserController',
-		controllerAs : 'uc'
+		controllerAs :'uc'
+		
 	})
 
-	.when('/logout', {
-		templateUrl : 'User/login.html',
+	.when('/logout', { 
+		templateUrl : 'home/home.html',
 		controller : 'UserController',
-		controllerAs : 'uc'
+		controllerAs :'uc'
 	})
 
 	.when('/register', {
@@ -37,7 +44,7 @@ app.config(function($routeProvider) {
 		controller : 'UserController',
 		controllerAs : 'uc'
 	})
-	
+
 	.when('/blog', {
 		templateUrl : 'Blog/blogform.html',
 		controller : 'BlogController',
@@ -81,6 +88,6 @@ app.config(function($routeProvider) {
 	})
 
 	.otherwise({
-	/* redirectTo : '/' */
+	 redirectTo : 'Home/Home.html'
 	});
 });

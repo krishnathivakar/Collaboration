@@ -9,17 +9,15 @@ app.controller('BlogController', ['$scope','BlogService','$location','$rootScope
 			// self.blog = {id:'',title : '',status: '',description:''};
 			self.blogs = []; // json array
 
-			/*
-			 * $scope.orderByMe = function(x) { $scope.myOrderBy = x; }
-			 */
 			
 			self.submit = submit;
 		    self.update = update;
 		    self.get = get;
-		    
+		    self.AcceptedBlogs = AcceptedBlogs;
 		    
 			
 			fetchAllBlogs();
+			
 			reset();
 			
 			function fetchAllBlogs() {
@@ -32,7 +30,26 @@ app.controller('BlogController', ['$scope','BlogService','$location','$rootScope
 			}
 
 			// this.fatchAllBlogs();
-
+			function AcceptedBlogs() {
+				console.log("AcceptedBlogs...")
+				BlogService.notAcceptedBlogs().then(function(d) {
+									//alert("Thank you for creating message")
+									self.blogsAccept = d;
+								},
+								function(errResponse) {
+									console.error('Error while creating notAcceptedBlogs.');
+								});
+			};
+			function notAcceptedBlogs() {
+				console.log("notAcceptedBlogs...")
+				BlogService.notAcceptedBlogs().then(function(d) {
+									//alert("Thank you for creating message")
+									self.blogsNotAccepted = d;
+								},
+								function(errResponse) {
+									console.error('Error while creating notAcceptedBlogs.');
+								});
+			};
 			function createBlog(blog){
 				console.log("createBlog...")
 				BlogService.createBlog(blog).then(function(d) {
@@ -93,7 +110,7 @@ app.controller('BlogController', ['$scope','BlogService','$location','$rootScope
 
 			function reset() {
 				self.blog = {id : null,title : '',status : '',description : '',addDate : '',userId:'',username:''};
-				// $scope.myform.$setPristine(); //reset Form
+				 //reset Form
 			}
 
 		} ]);

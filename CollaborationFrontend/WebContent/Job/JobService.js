@@ -5,7 +5,7 @@ app.service('JobService', ['$http','$q','$rootScope',
 
 			console.log("jobService...")
 
-			var BASE_URL = 'http://localhost:8083/CollaborationRestServices/'
+			var BASE_URL = 'http://localhost:8083/RestServices'
 
 				 var factory = {
 				fetchAllJobs: fetchAllJobs,
