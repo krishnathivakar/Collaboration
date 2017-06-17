@@ -71,9 +71,7 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
              
             updateUser: function(user, id){
             	console.log("calling fetchAllUsers ")
-                    return $http.put(BASE_URL+'/user/', user)  //2
-                            .then(
-                                    function(response){
+                    return $http.put(BASE_URL+'/user/', user).then(function(response){
                                         return response.data;
                                     }, 
                                     function(errResponse){
@@ -100,9 +98,7 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
             login: function(user){
             	   console.log("Calling the method authenticate with the user :"+user)
           		 
-                return $http.post(BASE_URL+'/login',user)
-                        .then(
-                                function(response){
+                return $http.post(BASE_URL+'/login',user).then(function(response){
                                     return response; 
                                   /*  $scope.userId=user.userid;
                                     $scope.userName=user.name;*///user json object

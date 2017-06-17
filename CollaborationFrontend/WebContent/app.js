@@ -4,7 +4,9 @@ app.config(function($routeProvider) {
 
 	$routeProvider
 
-	 .when('/', { templateUrl : 'index.html' }) 
+	.when('/', {
+		templateUrl : 'index.html'
+	})
 
 	.when('/home', {
 		templateUrl : 'Home/Home.html'
@@ -17,8 +19,9 @@ app.config(function($routeProvider) {
 	})
 
 	.when('/viewForum', {
-		templateUrl : 'Forum/Detail.html'
-
+		templateUrl : 'Forum/Detail.html',
+		controller : 'ForumController',
+		controllerAs : 'fc'
 	})
 
 	.when('/viewJob', {
@@ -29,14 +32,14 @@ app.config(function($routeProvider) {
 	.when('/login', {
 		templateUrl : 'User/Login.html',
 		controller : 'UserController',
-		controllerAs :'uc'
-		
+		controllerAs : 'uc'
+
 	})
 
-	.when('/logout', { 
+	.when('/logout', {
 		templateUrl : 'home/home.html',
 		controller : 'UserController',
-		controllerAs :'uc'
+		controllerAs : 'uc'
 	})
 
 	.when('/register', {
@@ -88,6 +91,6 @@ app.config(function($routeProvider) {
 	})
 
 	.otherwise({
-	 redirectTo : 'Home/Home.html'
+		redirectTo : 'Home/Home.html'
 	});
 });

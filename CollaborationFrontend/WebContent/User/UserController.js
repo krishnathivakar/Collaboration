@@ -3,9 +3,9 @@
 app.controller('UserController',['$scope','UserService','$location','$rootScope','$cookieStore','$http',function($scope, UserService, $location, $rootScope,$cookieStore, $http) {
 							console.log("UserController...")
 							var self = this;
-							self.user = {id : '',name : '',password : '',mobile : '',address : '',email : '',zipcode : '',role : ''};
+							self.user = {id : '',name : '',password : '',mobile : '',address : '',email : '',zipcode : '',role : '',isOnline:''};
 
-							self.currentUser = {id : '',name : '',password : '',mobile : '',address : '',email : '',zipcode : '',role : ''};
+							self.currentUser = {id : '',name : '',password : '',mobile : '',address : '',email : '',zipcode : '',role : '',isOnline:''};
   
 							self.users = []; // json array
 
@@ -162,7 +162,7 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 							};
 
 							self.reset = function() {
-								self.user = {id : null,name : '',password : '',mobile : '',address : '',email : '',zipcode : '',role : ''};
+								self.user = {id : null,name : '',password : '',mobile : '',address : '',email : '',zipcode : '',role : '',isOnline:''};
 								$scope.myForm.$setPristine(); // reset Form
 							};
 

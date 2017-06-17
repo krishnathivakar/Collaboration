@@ -17,7 +17,7 @@ app.controller('BlogController', ['$scope','BlogService','$location','$rootScope
 		    
 			
 			fetchAllBlogs();
-			
+			AcceptedBlogs();
 			reset();
 			
 			function fetchAllBlogs() {
@@ -32,12 +32,13 @@ app.controller('BlogController', ['$scope','BlogService','$location','$rootScope
 			// this.fatchAllBlogs();
 			function AcceptedBlogs() {
 				console.log("AcceptedBlogs...")
-				BlogService.notAcceptedBlogs().then(function(d) {
+				BlogService.AcceptedBlogs().then(function(d) {
 									//alert("Thank you for creating message")
+					console.log('d');
 									self.blogsAccept = d;
 								},
 								function(errResponse) {
-									console.error('Error while creating notAcceptedBlogs.');
+									console.error('Error while creating AcceptedBlogs.');
 								});
 			};
 			function notAcceptedBlogs() {

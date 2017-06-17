@@ -1,30 +1,31 @@
 'use strict';
 
-app.service('BlogService', ['$http','$q','$rootScope',
+app.service('CommentService', ['$http','$q','$rootScope',
 	function($http, $q, $rootScope) {
 
-			console.log("blogService...")
+			console.log("CommentService...") 
 
 			var BASE_URL =' http://localhost:8083/RestServices'
 
 				 var factory = {
-			        fetchAllBlogs: fetchAllBlogs,
-			        createBlog: createBlog,
-			        updateBlog:updateBlog,
-			        AcceptedBlogs: AcceptedBlogs
+			        fetchAllComments: fetchAllComments,
+			        createComment: createComment,
+			        updateComment:updateComment,
+			       
 			    };
 			 
 			    return factory;
 
-			    function fetchAllBlogs() {
-					console.log("calling fetchAllblogs ")
-					return $http.get(BASE_URL + '/blogs').then(
+			    function fetchAllComments(forumId) {
+					console.log("calling fetchAllComments ")
+					return $http.get(BASE_URL + '/comments/'+forumId).then(
 							function(response) {
+								console.log(response)
 								return response.data;
 							}, null);
 				};
 				
-				function AcceptedBlogs() {
+		/*		function AcceptedBlogs() {
 	            	console.log("calling AcceptedBlogs ") 
 	            	
 	            	
@@ -47,26 +48,27 @@ app.service('BlogService', ['$http','$q','$rootScope',
 		                                    },  
 		                                   null
 		                            );  
-		            };
+		            };*/
 
-				function createBlog(Blog) {
-					console.log("calling create Blog")
-					return $http.post(BASE_URL + '/blogs', Blog) // 1
+				function createComment(comment) {
+					console.log("calling create Comment")
+					console.log(comment)
+					return $http.post(BASE_URL + '/comments', comment) // 1
 					.then(function(response) {
 						return response.data;
 					}, function(errResponse) {
-						console.error('Error while creating Blog');
+						console.error('Error while creating Comments');
 						return $q.reject(errResponse);
 					});
 				};
 
-				function updateBlog(Blog) {
-					console.log("calling fetchAllBlogs ")
-					return $http.put(BASE_URL + '/Blog/', Blog) // 2
+				function updateComment(Comment) {
+					console.log("calling fetchAllComment ")
+					return $http.put(BASE_URL + '/comments/', Comment) // 2
 					.then(function(response) {
 						return response.data;
 					}, function(errResponse) {
-						console.error('Error while updating Blog');
+						console.error('Error while updating Comments');
 						return $q.reject(errResponse);
 					});
 				};

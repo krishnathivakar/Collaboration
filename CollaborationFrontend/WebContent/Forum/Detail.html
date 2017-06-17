@@ -9,6 +9,30 @@
 <div><h1 style="margin-top: 2em;">{{viewForumm.forumTitle}}</h1>
 <!-- <h5>Created by : <b>{{bc.blog.status}}</b> | Created On : <b>{{viewForum.addDate}}</b></h5> -->
 <h4>{{viewForumm.forumContent}}</h4></div>
+ 
+<form ng-submit="fc.createComment(fc.comment)">
+<div class="form-group">
+<textarea placeholder="Enter Comment Here.."
+									class="form-control" ng-model="fc.comment.comments"></textarea >
+				
+			<button type="submit" class="btn btn-lg btn-info">Submit</button>
+</div>
+</form>
+
+
+
+
+<div ng-repeat="cv in ct">
+
+<h3>UserName: <span ng-bind="cv.userName"></span></h3>
+
+<!-- <td>{{cv.userName}}</td> -->
+
+
+<h5>Comment: <span ng-bind="cv.comments"></span></h5>
+<br><hr>
+</div>
+
 
 </body>
 </html>

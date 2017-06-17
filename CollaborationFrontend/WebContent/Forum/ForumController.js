@@ -1,14 +1,17 @@
 'use strict';
 
-app.controller('ForumController', ['$scope','ForumService','$location','$rootScope','$cookieStore','$http',
-	function($scope, ForumService, $location, $rootScope, $cookieStore,
+app.controller('ForumController', ['$scope','ForumService','CommentService','$location','$rootScope','$cookieStore','$http',
+	function($scope, ForumService,CommentService, $location, $rootScope, $cookieStore,
 				$http) {
 			console.log("ForumController...")
 			 var self = this;
 			self.forum = {forumId:'',forumTitle : '',forumContent : '',userId:'',userName:'',addDate:''};
+			console.log("comment")
+			self.comment = {id:'',forumId : '',userId : '',comments:'',userName:'',timeStamp:'',userMail:''};
 			//this.forum = {forumId:'',forumTitle : '',forumContent : '',userId:'',userName:''};
-			this.forums = []; // json array
-
+			this.forums = [];// json array
+				$scope.cmt={};
+			self.comments = [];
 			/*$scope.orderByMe = function(x) {
 				$scope.myOrderBy = x;
 			}
@@ -19,7 +22,8 @@ app.controller('ForumController', ['$scope','ForumService','$location','$rootSco
 			self.submit = submit;
 		    self.update = update;
 		    self.get = get;
-		
+		    self.getComment = getComment;
+		self.createComment = createComment;
 			fetchAllForums();
 			reset();
 
@@ -33,11 +37,28 @@ app.controller('ForumController', ['$scope','ForumService','$location','$rootSco
 				});
 			};
 
-		
+			function createComment(comment){
+				console.log("createComment...")
+				
+					
+				$scope.recentForum = $rootScope.viewForumm;
+				console.log($scope.recentForum);
+					CommentService.createComment(comment).then(function(d) {
+						self.comment = d;
+						
+					alert("Thank you for creating message")
+					$location.path("/home")
+				}, function(errResponse) {
+					console.error('Error while creating Comment.');
+				});
+			};
 
 			function createForum(forum){
 				console.log("createForum...")
 				ForumService.createForum(forum).then(function(d) {
+					self.forum = d;
+					$scope.cforum = self.forum;
+					$rootScope.currentForum = $scope.cforum;
 					alert("Thank you for creating message")
 					$location.path("/index")
 				}, function(errResponse) {
@@ -77,12 +98,38 @@ app.controller('ForumController', ['$scope','ForumService','$location','$rootSco
 			// better to call fetchAllForums -> after login ???
 
 			function get(forum){
-				$scope.fv=forum;
-				console.log($scope.fv);
-				$rootScope.viewForumm=$scope.fv;
-				$location.path("/viewForum");
+				CommentService.fetchAllComments(forum.forumId) .then(function(d) {
+					self.forumComments = d;
+					$rootScope.fcomment = d;
+					console.log($rootScope.fcomment);
+					console.log(self.forumComments);
+					
+					
+					$scope.fv=forum;
+					$scope.cmt=d;
+					console.log($scope.fv);
+					console.log($scope.cmt);
+					console.log("fetchingAllComments...")
+					
+					$rootScope.viewForumm=$scope.fv;
+					$rootScope.ct=$scope.cmt;
+					$location.path("/viewForum");
+				}, function(errResponse) {
+					console.error('Error while fetching Comments');
+				});
 				
 				
+				
+			};
+			
+			function getComment(forumId){
+				console.log("fetchingAllComments...")
+				CommentService.fetchAllComments(forumId) .then(function(d) {
+					self.forumComments = d;
+					console.log(self.forumComments)
+				}, function(errResponse) {
+					console.error('Error while fetching Comments');
+				});
 			};
 			
 			
@@ -95,7 +142,8 @@ app.controller('ForumController', ['$scope','ForumService','$location','$rootSco
 			};
 
 			 function reset() {
-				self.forum = {forumId:'',id:'',forumTitle : '',forumContent : '',userId:'',userName:'',addDate:''};
+				self.forum = {forumId:null,id:'',forumTitle : '',forumContent : '',userId:'',userName:'',addDate:''};
+				self.comment = {id:null,forumId : '',userId : '',comments:'',userName:'',timeStamp:'',userMail:''};
 				//$scope.myForm.$setPristine(); // reset Form
 			};
 
