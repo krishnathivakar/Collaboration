@@ -2,6 +2,8 @@ package com.niit.backend.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.backend.DAO.ForumDAO;
 import com.niit.backend.model.Forum;
+import com.niit.backend.model.User;
 
 @RestController
 public class ForumController {
@@ -48,8 +51,10 @@ public class ForumController {
 	}
 	
 	@PostMapping(value = "/forums")
-	public ResponseEntity createForum(@RequestBody Forum forum) {
-
+	public ResponseEntity createForum(@RequestBody Forum forum, HttpSession session) {
+		User user = (User) session.getAttribute("user");  
+		forum.setUserId(user.getId());
+		forum.setUserName(user.getName());
 		forumDAO.saveOrUpdate(forum);
 
 		return new ResponseEntity(forum, HttpStatus.OK);
