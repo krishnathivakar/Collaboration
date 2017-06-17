@@ -1,15 +1,14 @@
 package com.niit.backend.model;
 
 import java.sql.Blob;
-import java.sql.Clob;
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
-import javax.annotation.Generated;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
 
 import org.springframework.stereotype.Component;
 
@@ -23,15 +22,12 @@ public class Event {
 	private int id;
 	
 	private String name;
-	
+	@Column(length = 2000)
 	private String description;
 	
 	private String venue;
 	
-	@Generated(value = { "" })
-	@Temporal(javax.persistence.TemporalType.DATE)
-	private Date addDate = new java.sql.Date(new java.util.Date().getTime());
-
+	private String timeStamp = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss").format(Calendar.getInstance().getTime());
 	
 	private Blob image;
 
@@ -67,13 +63,7 @@ public class Event {
 		this.venue = venue;
 	}
 
-	public Date getAddDate() {
-		return addDate;
-	}
-
-	public void setAddDate(Date addDate) {
-		this.addDate = addDate;
-	}
+	
 
 	public Blob getImage() {
 		return image;
@@ -82,6 +72,16 @@ public class Event {
 	public void setImage(Blob image) {
 		this.image = image;
 	}
+
+	public String getTimeStamp() {
+		return timeStamp;
+	}
+
+	public void setTimeStamp(String timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+	
+	
 	
 	
 }

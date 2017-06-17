@@ -84,6 +84,7 @@ public class BlogDAOImpl implements BlogDAO {
 
 	}
 
+	@Transactional
 	public List<Blog> getAcceptedList() {
 		// TODO Auto-generated method stub
 		String hql = "from Blog where status = " + "'A'";
@@ -94,6 +95,7 @@ public class BlogDAOImpl implements BlogDAO {
 		return list;
 	}
 
+	@Transactional
 	public List<Blog> getNotAcceptedList() {
 		// TODO Auto-generated method stub
 		String hql = "from Blog where status = " + "'NA'";

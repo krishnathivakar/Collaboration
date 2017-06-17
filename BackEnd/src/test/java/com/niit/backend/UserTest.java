@@ -4,6 +4,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.niit.backend.DAO.BlogDAO;
 import com.niit.backend.DAO.ChatDAO;
+import com.niit.backend.DAO.CommentDAO;
 import com.niit.backend.DAO.EventDAO;
 import com.niit.backend.DAO.ForumDAO;
 import com.niit.backend.DAO.FriendDAO;
@@ -11,6 +12,7 @@ import com.niit.backend.DAO.JobDAO;
 import com.niit.backend.DAOImpl.UserDAO;
 import com.niit.backend.model.Blog;
 import com.niit.backend.model.Chat;
+import com.niit.backend.model.Comment;
 import com.niit.backend.model.Event;
 import com.niit.backend.model.Forum;
 import com.niit.backend.model.Friend;
@@ -33,6 +35,7 @@ public class UserTest {
 		Friend friend = (Friend) context.getBean("friend");
 		Job job = (Job) context.getBean("job");
 		User user = (User) context.getBean("user");
+		Comment comment = (Comment) context.getBean("comment");
 		
 		BlogDAO blogDAO = (BlogDAO) context.getBean("blogDAO");
 		ChatDAO chatDAO = (ChatDAO) context.getBean("chatDAO");
@@ -41,6 +44,7 @@ public class UserTest {
 		FriendDAO friendDAO = (FriendDAO) context.getBean("friendDAO");
 		JobDAO jobDAO = (JobDAO) context.getBean("jobDAO");
 		UserDAO userDAO = (UserDAO) context.getBean("userDAO");
+		CommentDAO commentDAO = (CommentDAO) context.getBean("commentDAO");
 	
 		
 		blog.setTitle("krish");
@@ -53,6 +57,11 @@ public class UserTest {
 		chat.setMessage("hi bro");
 		chat.setUserId(10);
 		chat.setUserName("krishna");
+		
+		comment.setComments("still");
+		comment.setForumId(12);
+		comment.setUserId(45);
+		comment.setUserName("hi");
 		
 		event.setDescription("holidayCelebration");
 		event.setName("trip Advisor");
@@ -87,10 +96,11 @@ public class UserTest {
 		
 		blogDAO.save(blog);
 		chatDAO.save(chat);
+		commentDAO.saveOrUpdate(comment);
 		eventDAO.save(event);
 		forumDAO.save(forum);
 		friendDAO.save(friend);
-		jobDAO.save(job);
+		jobDAO.saveOrUpdate(job);
 		userDAO.save(user);
 
 		

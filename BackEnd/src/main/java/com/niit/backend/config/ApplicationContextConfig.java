@@ -14,14 +14,18 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.backend.DAO.BlogCommentDAO;
 import com.niit.backend.DAO.BlogDAO;
 import com.niit.backend.DAO.ChatDAO;
+import com.niit.backend.DAO.CommentDAO;
 import com.niit.backend.DAO.EventDAO;
 import com.niit.backend.DAO.ForumDAO;
 import com.niit.backend.DAO.FriendDAO;
 import com.niit.backend.DAO.JobDAO;
+import com.niit.backend.DAOImpl.BlogCommentDAOImpl;
 import com.niit.backend.DAOImpl.BlogDAOImpl;
 import com.niit.backend.DAOImpl.ChatDAOImpl;
+import com.niit.backend.DAOImpl.CommentDAOImpl;
 import com.niit.backend.DAOImpl.EventDAOImpl;
 import com.niit.backend.DAOImpl.ForumDAOImpl;
 import com.niit.backend.DAOImpl.FriendDAOImpl;
@@ -29,7 +33,9 @@ import com.niit.backend.DAOImpl.JobDAOImpl;
 import com.niit.backend.DAOImpl.UserDAO;
 import com.niit.backend.DAOImpl.UserDAOImpl;
 import com.niit.backend.model.Blog;
+import com.niit.backend.model.BlogComment;
 import com.niit.backend.model.Chat;
+import com.niit.backend.model.Comment;
 import com.niit.backend.model.Event;
 import com.niit.backend.model.Forum;
 import com.niit.backend.model.Friend;
@@ -85,7 +91,9 @@ public class ApplicationContextConfig {
 		sessionBuilder.addProperties(getHibernateProperties());
 
 		sessionBuilder.addAnnotatedClass(Blog.class);
+		sessionBuilder.addAnnotatedClass(BlogComment.class);
 		sessionBuilder.addAnnotatedClass(Chat.class);
+		sessionBuilder.addAnnotatedClass(Comment.class);
 		sessionBuilder.addAnnotatedClass(Event.class);
 		sessionBuilder.addAnnotatedClass(Forum.class);
 		sessionBuilder.addAnnotatedClass(Friend.class);
@@ -149,5 +157,15 @@ public class ApplicationContextConfig {
 	public JobDAO getJobDAO(SessionFactory sessionFactory) {
 		return new JobDAOImpl(sessionFactory);
 	}
-
+	
+	@Autowired(required = true)
+	@Bean(name = "commentDAO")
+	public CommentDAO getCommentDAO(SessionFactory sessionFactory) {
+		return new CommentDAOImpl(sessionFactory);
+	}
+	@Autowired(required = true)
+	@Bean(name = "blogCommentDAO")
+	public BlogCommentDAO getBlogCommentDAO(SessionFactory sessionFactory) {
+		return new BlogCommentDAOImpl(sessionFactory);
+	}
 }

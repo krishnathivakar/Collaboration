@@ -1,13 +1,12 @@
 package com.niit.backend.model;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
 
 import org.springframework.stereotype.Component;
 
@@ -28,10 +27,11 @@ public class Job {
 	
 	private String email;
 	
-	@Generated(value = { "" })
+	/*@Generated(value = { "" })
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date addDate = new java.sql.Date(new java.util.Date().getTime());
-
+*/
+	private String timeStamp = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss").format(Calendar.getInstance().getTime());
 	
 	private String qualification;
 	
@@ -53,13 +53,6 @@ public class Job {
 		this.title = title;
 	}
 
-	public Date getAddDate() {
-		return addDate;
-	}
-
-	public void setAddDate(Date addDate) {
-		this.addDate = addDate;
-	}
 
 	public String getQualification() {
 		return qualification;
@@ -99,6 +92,14 @@ public class Job {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getTimeStamp() {
+		return timeStamp;
+	}
+
+	public void setTimeStamp(String timeStamp) {
+		this.timeStamp = timeStamp;
 	}
 	
 	

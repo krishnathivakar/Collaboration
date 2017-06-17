@@ -1,14 +1,13 @@
 package com.niit.backend.model;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
 
 import org.springframework.stereotype.Component;
 
@@ -23,7 +22,7 @@ public class Blog {
 	
 	private String title;
 	
-	@Column(length = 2000)
+	@Column(length = 12000)
 	private String description;
 	
 	private int userId;
@@ -32,9 +31,7 @@ public class Blog {
 	
 	private String status;
 	
-	@Generated(value = { "" })
-	@Temporal(javax.persistence.TemporalType.DATE)
-	private Date addDate = new java.sql.Date(new java.util.Date().getTime());
+	private String timeStamp = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss").format(Calendar.getInstance().getTime());
 
 	public int getId() {
 		return id;
@@ -77,12 +74,13 @@ public class Blog {
 		this.username = username;
 	}
 
-	public Date getAddDate() {
-		return addDate;
+
+	public String getTimeStamp() {
+		return timeStamp;
 	}
 
-	public void setAddDate(Date addDate) {
-		this.addDate = addDate;
+	public void setTimeStamp(String timeStamp) {
+		this.timeStamp = timeStamp;
 	}
 
 	public String getStatus() {
