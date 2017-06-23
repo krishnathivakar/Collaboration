@@ -1,9 +1,9 @@
 
  
- <h4 style="float: right; margin: 0px 0px 0px 0px;"><a href="#createBlog">Create New Blog</a></h4>
+ <h4 style="float: right; margin: 0px 0px 0px 0px;"><a href="#blog" ng-show="currentUser.name">Create New Blog</a></h4>
 
 
-<div class="row "ng-repeat="u in bc.blogs">
+<div class="row "ng-repeat="u in bc.blogsAccept">
 
 
   <div class="viewBlog" style="margin-left:2em; white-space: nowrap;">
@@ -17,14 +17,15 @@
  
 
   <div>
-  <h4>Created By: <span ng-bind="u.username"></span></h4>
-   <h4><span ng-bind="u.status"></span></h4>
+  <h4>Created By: <span ng-bind="u.username"></span> with StatuS: <span ng-bind="u.status"></span></h4>
+  
+   <span ng-bind="u.description"></span>...
   </div>
-  <hr style="margin-top: 3em;">
-  <span ng-bind="u.description"></span>...
   <hr style="margin-top: 0em;">
+  
+ <!--  <hr style="margin-top: 0em;">
   <div class="desc">
-  <!-- <button type="button" ng-click="blog.get(u)" style="float: right;">Read More ></button> -->
-  </div>
+  <button type="button" ng-click="blog.get(u)" style="float: right;">Read More ></button>
+  </div> -->
  </div>
 </div>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body style="padding-left: 0em;">
+HIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
+
+<h1>ADDDDDDDDDDMMMMMMMMMMMMMMIIIIIIIIIIIIIIIIINNNNNNNNNNNNNNNNNNNNNN</h1>
+
+
+
+
+
+<div class="column-content-region col-sm-4"  ng-controller="ForumController as fcc">
+<h3>Forums</h3>
+<div ng-init="fcc.notAcceptedForums()">
+<div class="abc" ng-repeat="for in fcc.forumsNotAccepted" >
+<h1><span ng-bind="for.forumTitle"></span></h1> <h6>Created On:<span ng-bind="for.timeStamp"></span></h6>
+STATUS: {{for.status}}
+<h3><span ng-bind="for.forumContent" | limitTo : '5'></span></h3>
+<a href="" ng-click="fcc.adminGet(for)"><input type="button" name="button"  value="Read More"/></a>
+
+<hr>
+</div>
+</div>
+</div>
+
+<div class="column-content-region col-sm-6" style="margin-left: 4em;" ng-controller="BlogController as bcc" >
+<h3>Blogs</h3>
+<div ng-init="bcc.notAcceptedBlogs()">
+<!-- {{bcc.blogsNotAccepted}} -->
+<div class="abc" ng-repeat="bna in bcc.blogsNotAccepted">
+<h1>TITLE:{{bna.title}} </h1>
+<h6>Authored By:{{bna.username}} </h6><h6>Created On:<span ng-bind="bna.timeStamp"></span></h6> 
+<h6>STATUS:{{bna.status}} </h6>
+<h3>DESC:{{bna.description}}</h3>
+<br>
+<a href="" ng-click="bcc.adminGet(bna)"><input type="button" name="button"  value="Read More"/></a>
+
+<hr>
+</div>
+</div>
+</div>
+</body>
+</html>

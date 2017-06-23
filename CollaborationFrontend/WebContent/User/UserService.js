@@ -10,7 +10,7 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
            
             fetchAllUsers: function() {
             	console.log("calling fetchAllUsers ")
-                    return $http.get(BASE_URL+'/listAllUsersNotFriends')
+                    return $http.get(BASE_URL+'/users')
                             .then(
                                     function(response){
                                         return response.data;

@@ -3,6 +3,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style type="text/css">
+.well, .form-group{
+font-variant: normal;
+color: red;
+}
+
+</style>
 </head>
 <body ng-controller="UserController As uc">
  
@@ -23,12 +30,12 @@
 						<div class="col-sm-12">
 							<div class="row" ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
 								
-
+								<font color="blue">
 								<div class="form-group">
 									<label>User Mail</label> <input type="text"
 										placeholder="Enter Mail id Here.." class="form-control" name="email" ng-model="uc.user.email">
 								</div>
-
+								</font>
 							
 
 							<div class="form-group">

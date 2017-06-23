@@ -22,9 +22,13 @@ app.controller('ForumController', ['$scope','ForumService','CommentService','$lo
 			self.submit = submit;
 		    self.update = update;
 		    self.get = get;
-		    self.getComment = getComment;
+		    self.adminGet = adminGet;
+		 self.AcceptedForums = AcceptedForums;
+		 self.notAcceptedForums = notAcceptedForums;
 		self.createComment = createComment;
+		self.accept = accept;
 			fetchAllForums();
+			AcceptedForums();
 			reset();
 
 			function fetchAllForums() {
@@ -35,6 +39,30 @@ app.controller('ForumController', ['$scope','ForumService','CommentService','$lo
 				}, function(errResponse) {
 					console.error('Error while fetching Forums');
 				});
+			};
+			
+			function AcceptedForums() {
+				console.log("AcceptedForums...")
+				ForumService.AcceptedForums().then(function(d) {
+									//alert("Thank you for creating message")
+					console.log(d)
+									self.forumsAccept = d;
+								},
+								function(errResponse) {
+									console.error('Error while creating Acceptedforums.');
+								});
+			};
+			function notAcceptedForums() {
+				console.log("notAcceptedForums...")
+				ForumService.notAcceptedForums().then(function(d) {
+									//alert("Thank you for creating message")
+					console.log(d)
+									self.forumsNotAccepted = d;
+									console.log(self.forumsNotAccepted)
+								},
+								function(errResponse) {
+									console.error('Error while creating notAcceptedForums.');
+								});
 			};
 
 			function createComment(comment){
@@ -47,7 +75,8 @@ app.controller('ForumController', ['$scope','ForumService','CommentService','$lo
 						self.comment = d;
 						
 					alert("Thank you for creating message")
-					$location.path("/home")
+					get($scope.recentForum);
+					//$location.path("/home")
 				}, function(errResponse) {
 					console.error('Error while creating Comment.');
 				});
@@ -96,7 +125,18 @@ app.controller('ForumController', ['$scope','ForumService','CommentService','$lo
 			// this.fetchAllForums(); //calling the method
 
 			// better to call fetchAllForums -> after login ???
-
+			
+			function accept(viewForums) {
+				{
+					console.log('accept the Forum details')
+						
+					ForumService.accept(viewForums);
+					console.log(viewForums)
+					$location.path("/admin")
+				}
+				
+			};
+			
 			function get(forum){
 				CommentService.fetchAllComments(forum.forumId) .then(function(d) {
 					self.forumComments = d;
@@ -122,7 +162,14 @@ app.controller('ForumController', ['$scope','ForumService','CommentService','$lo
 				
 			};
 			
-			function getComment(forumId){
+			function adminGet(forums){
+				$scope.fvv=forums;
+				console.log($scope.fvv);
+				$rootScope.viewForums=$scope.fvv;
+				$location.path("/adminForumd");
+			}
+			
+			/*function getComment(forumId){
 				console.log("fetchingAllComments...")
 				CommentService.fetchAllComments(forumId) .then(function(d) {
 					self.forumComments = d;
@@ -130,7 +177,7 @@ app.controller('ForumController', ['$scope','ForumService','CommentService','$lo
 				}, function(errResponse) {
 					console.error('Error while fetching Comments');
 				});
-			};
+			};*/
 			
 			
 			 function submit() {

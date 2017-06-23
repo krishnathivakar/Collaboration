@@ -3,7 +3,7 @@
 app.controller('JobController',['$scope','JobService','$location','$rootScope','$cookieStore','$http',function($scope, JobService, $location, $rootScope,$cookieStore, $http) {
 							console.log("JobController...")
 							var self = this;
-							self.job = {id:'',title : '',companyName: '',technicalKnowledge:'',email:'',addDate:'',qualification:'',status:''};
+							self.job = {id:'',title : '',companyName: '',technicalKnowledge:'',email:'',timeStamp:'',qualification:'',status:''};
 							//this.job =  {id:'',title : '',description: '',addDate:'',qualification:'',status:''};
 							this.jobs = []; // json array
 
@@ -85,6 +85,7 @@ app.controller('JobController',['$scope','JobService','$location','$rootScope','
 								$scope.jv=job;
 								console.log($scope.jv);
 								$rootScope.viewJob=$scope.jv;
+								console.log('viewJob')
 								$location.path("/viewJob");
 								
 								

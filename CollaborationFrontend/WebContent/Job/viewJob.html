@@ -1,9 +1,12 @@
 
  
- <h4 style="float: right; margin: 0px 0px 0px 0px;"><a href="#createJob">Create New Job</a></h4>
+ <h4 style="float: right; margin: 0px 0px 0px 0px;"><a href="#job" ng-show="currentUser.role=='ADMIN'">Create New Job</a></h4>
 
 
-<div class="row "ng-repeat="jo in jc.jobs">
+<div ng-controller="JobController as jc">
+<h3>Jobs</h3>
+<div ng-repeat="jo in jc.jobs"> 
+<
 
 
   <div class="viewJob" style="margin-left:2em; white-space: nowrap;">
@@ -11,21 +14,23 @@
 
    <h3 style="margin-left: 0.5em; float: left; color: green;"><span ng-bind="jo.title"></span></h3>
 
-   <a ng-click="blog.edit(jo.id)"><span class="glyphicon glyphicon-pencil editContent"></span></a>
-   <a  ng-click="blog.remove(jo.id)" ><span class="glyphicon glyphicon-trash editContent"></span></a>
+   <a ng-click="jo.edit(jo.id)"><span class="glyphicon glyphicon-pencil editContent"></span></a>
+   <a  ng-click="jo.remove(jo.id)" ><span class="glyphicon glyphicon-trash editContent"></span></a>
    <hr style="clear: both;" />
  
 
   <div>
-   <h4>Reqd Skills: <span ng-bind="jo.companyName"></span></h4>
+  <h3>Company Name :  <span ng-bind="jo.companyName"></h3>
+   <h4>Reqd Skills: <span ng-bind="jo.technicalKnowledge"></span></h4>
    <h4><span ng-bind="jo.status"></span></h4>
   </div>
   <hr style="margin-top: 3em;">
-  <span ng-bind="jo.technicalKnowledge"></span>...
+ Added On <span ng-bind="jo.timeStamp"></span>...
   <hr style="margin-top: 0em;">
   <div class="desc">
   <h2><span ng-bind="jo.qualification">..Can Apply</span></h2>
   <!-- <button type="button" ng-click="blog.get(u)" style="float: right;">Read More ></button> -->
   </div>
  </div>
+</div>
 </div>

@@ -4,42 +4,33 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <style type="text/css">
-.abc:hover{
+.abc{
 padding-left: 1.5em;
 -moz-box-shadow: 0 0 10px #ccc; 
 -webkit-box-shadow: 0 0 10px #ccc; 
 box-shadow: 0 0 10px #ccc; 
-    background-color: #F5F5F9;
+    background-color: #98a4b7;
 }
-html, body {
-	text-decoration: none;
-	/* overflow: scroll; */
-	background: url(http://www.wallpaperup.com/uploads/wallpapers/2012/10/21/20181/cad2441dd3252cf53f12154412286ba0.jpg) no-repeat center center
-		fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	}
+
 </style>
 </head>
 <body style="padding-left: 0em;">
 <div  ng-controller="UserController as uc">
-{{id}}
-{{name}}
+
 <div class="column-content-region col-sm-3"  ng-controller="ForumController as fc">
 <h3>Forums</h3>
-<div class="abc" ng-repeat="for in fc.forums" >
+<div ng-init="fc.AcceptedForums()">
+<div class="abc" ng-repeat="for in fc.forumsAccept" >
 <h1><span ng-bind="for.forumTitle"></span></h1> <h6>Created On:<span ng-bind="for.timeStamp"></span></h6> 
 <h5><span ng-bind="for.forumContent" | limitTo : 25"></span></h5>
 <a href="" ng-click="fc.get(for)"><input type="button" name="button"  value="Read More"/></a>
 <hr>
 </div>
 </div>
-
+</div>
 <div class="column-content-region col-sm-3" style="margin-left: 4em;" ng-controller="BlogController as bc" >
 <h3>Blogs</h3>
-<div ng-init="bc.AcceptedBlogs">
+<div ng-init="bc.AcceptedBlogs()">
 <div class="abc" ng-repeat="u in bc.blogsAccept">
 <h1>TITLE: <span ng-bind="u.title"></span></h1> <h6>Authored By:<span ng-bind="u.username"></span></h6> 
 <h6>STATUS: <span ng-bind="u.status"></</span></h6>
@@ -53,7 +44,7 @@ html, body {
 <div class="column-content-region col-sm-3" style="margin-left: 4em;" ng-controller="JobController as jc">
 <h3>Jobs</h3>
 <div class="abc" ng-repeat="jo in jc.jobs"> 
-<h1><span ng-bind="jo.title"></span></h1><h6>Company Name:<span ng-bind="u.companyName"></span></h6>
+<h1><span ng-bind="jo.title"></span></h1><h6>Company Name:<span ng-bind="jo.companyName"></span></h6>
 <h3><span ng-bind="jo.qualification"></span></h3><h3><span ng-bind="jo.status"></span></h3>
 <h2>Knowledge Reqd:<span ng-bind="jo.technicalKnowledge"></span></h2>
  <h6>Created On:<span ng-bind="jo.timeStamp"></span></h6>

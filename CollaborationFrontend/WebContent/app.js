@@ -1,11 +1,13 @@
 var app = angular.module('krishna', [ 'ngRoute', 'ngCookies' ]);
 
 app.config(function($routeProvider) {
-
+	
 	$routeProvider
-
+	
+         
+         
 	.when('/', {
-		templateUrl : 'index.html'
+		templateUrl : 'Home/Home.html'
 	})
 
 	.when('/home', {
@@ -13,9 +15,27 @@ app.config(function($routeProvider) {
 
 	})
 
-	.when('/viewBlog', {
-		templateUrl : 'Blog/Detail.html'
+	.when('/admin', {
+		templateUrl : 'Admin/adminPage.html'
 
+	})
+
+	.when('/adminBlogd', {
+		templateUrl : 'Admin/BlogDetails.html',
+		controller : 'BlogController',
+		controllerAs : 'bcc'
+	})
+
+	.when('/adminForumd', {
+		templateUrl : 'Admin/ForumDetails.html',
+		controller : 'ForumController',
+		controllerAs : 'fcc'
+	})
+	
+	.when('/viewBlog', {
+		templateUrl : 'Blog/Detail.html',
+		controller : 'BlogController',
+		controllerAs : 'bc'
 	})
 
 	.when('/viewForum', {
@@ -23,10 +43,17 @@ app.config(function($routeProvider) {
 		controller : 'ForumController',
 		controllerAs : 'fc'
 	})
-
+	
+	
+	/*.when('/frndreq', {
+		templateUrl : 'Friend/FriendReq.html',
+	
+	})*/
+	
 	.when('/viewJob', {
-		templateUrl : 'Job/Detail.html'
-
+		templateUrl : 'Job/Detail.html',
+		controller : 'JobController',
+		controllerAs : 'jc'
 	})
 
 	.when('/login', {
@@ -36,11 +63,10 @@ app.config(function($routeProvider) {
 
 	})
 
-	.when('/logout', {
-		templateUrl : 'home/home.html',
-		controller : 'UserController',
-		controllerAs : 'uc'
-	})
+	/*
+	 * .when('/logout', { templateUrl : 'home/home.html', controller :
+	 * 'UserController', controllerAs : 'uc' })
+	 */
 
 	.when('/register', {
 		templateUrl : 'User/Register.html',
@@ -89,7 +115,16 @@ app.config(function($routeProvider) {
 		controllerAs : 'jc'
 
 	})
-
+	
+	.when('/find', {
+		templateUrl : 'User/FriendReq.html'
+		
+			
+	})
+	
+	.when('/pending', {
+		templateUrl : 'Friend/FriendPending.html'
+	})
 	.otherwise({
 		redirectTo : 'Home/Home.html'
 	});

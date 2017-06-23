@@ -1,7 +1,7 @@
-<h4 style="float: right; margin: 0px 0px 0px 0px;"><a href="#createBlog">Create New Forum</a></h4>
+<h4 style="float: right; margin: 0px 0px 0px 0px;"><a href="#forum" ng-show="currentUser.name">Create New Forum</a></h4>
 
 
-<div class="row" ng-repeat="for in fc.forums">
+<div class="row" ng-repeat="for in fc.forumsAccept">
 
 
   <div class="viewBlog" style="margin-left:2em; white-space: nowrap;">
@@ -11,16 +11,17 @@
 
    <a ng-click="blog.edit(u.id)"><span class="glyphicon glyphicon-pencil editContent"></span></a>
    <a  ng-click="blog.remove(u.id)" ><span class="glyphicon glyphicon-trash editContent"></span></a>
-   <hr style="clear: both;" />
+  <!--  <hr style="clear: both;" /> -->
  
 
-  <div>
+  <div >
   <hr style="margin-top: 3em;">
-  <span ng-bind="for.forumContent"></span>...
-  <hr style="margin-top: 0em;">
+  <h4><span style="width:50px" ng-bind="for.forumContent"></span></h4>...
+  
   
   </div>
    <h4><span ng-bind="for.status"></span></h4>
+   <hr style="margin-top: 0em;">
   <div class="desc">
   <!-- <button type="button" ng-click="blog.get(u)" style="float: right;">Read More ></button> -->
   </div>

@@ -5,11 +5,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div><h4 style= "margin: 0px 0px 10px 0px; margin-left: 85%;"><a href="#createJob">Create New Job</a></h4></div>
+<div><h4 style= "margin: 0px 0px 10px 0px; margin-left: 85%;"><a href="#job" ng-show="currentUser.role=='ADMIN'">Create New Job</a></h4></div>
 <div><h1 style="margin-top: 2em;">{{viewJob.title}}</h1>
-<h5>Created by : <b>{{bc.blog.status}}</b> | Created On : <b>{{viewJob.addDate}}</b></h5>
+<h5>Created by : <b>{{viewJob.email}}</b> | Created On : <b>{{viewJob.timeStamp}}</b></h5>
 <h3>Status:{{viewJob.status}}</h3>
-<h4>{{viewJob.description}}</h4></div>
+<h1>knowledge ReqD :</h1><p>{{viewJob.technicalKnowledge}}</p>
+<h2>{{viewJob.qualification}}... Can Apply</h2>
+</div>
 
 </body>
 </html>

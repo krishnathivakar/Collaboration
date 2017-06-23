@@ -25,31 +25,6 @@ app.service('CommentService', ['$http','$q','$rootScope',
 							}, null);
 				};
 				
-		/*		function AcceptedBlogs() {
-	            	console.log("calling AcceptedBlogs ") 
-	            	
-	            	
-	                    return $http.get(BASE_URL+'/acceptedblog').then(function(response){
-	                    	console.log('response');
-	                                         return response.data;
-	                                    	console.log(response)
-	                                    },  
-	                                   null
-	                            );  
-	            };
-	            
-				function notAcceptedBlogs() {
-		            	console.log("calling notAcceptedBlogs ") 
-		            	
-		            	
-		                    return $http.get(BASE_URL+'/notAcceptedblog').then(function(response){
-		                                         return response.data;
-		                                    	console.log(response)
-		                                    },  
-		                                   null
-		                            );  
-		            };*/
-
 				function createComment(comment) {
 					console.log("calling create Comment")
 					console.log(comment)

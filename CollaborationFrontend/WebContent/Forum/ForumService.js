@@ -12,7 +12,9 @@ app.service('ForumService', ['$http','$q','$rootScope',
 			        fetchAllForums: fetchAllForums,
 			        createForum: createForum,
 			        updateForum:updateForum,
-			       
+			        AcceptedForums:AcceptedForums,
+			        notAcceptedForums:notAcceptedForums,
+			        accept: accept
 			    };
 			 
 			    return factory;
@@ -24,6 +26,30 @@ app.service('ForumService', ['$http','$q','$rootScope',
 								return response.data;
 							}, null);
 				};
+				
+				function AcceptedForums() {
+					console.log("calling AcceptedForums ")
+
+					return $http.get(BASE_URL + '/acceptedforum').then(
+							function(response) {
+								console.log('response');
+								return response.data;
+								console.log(response)
+							}, null);
+				}
+				;
+
+				function notAcceptedForums() {
+					console.log("calling notAcceptedForums ")
+
+					return $http.get(BASE_URL + '/notAcceptedforum').then(
+							function(response) {
+								console.log(response)
+								return response.data;
+
+							}, null);
+				}
+				;
 
 				function createForum(forum){
 					console.log("calling create Forum")
@@ -46,7 +72,16 @@ app.service('ForumService', ['$http','$q','$rootScope',
 						return $q.reject(errResponse);
 					});
 				};
-
+				function accept(Forum) {
+					console.log("calling accept Blogs ")
+					return $http.put(BASE_URL + '/acceptForum', Forum) // 2
+					.then(function(response) {
+						return response.data;
+					}, function(errResponse) {
+						console.error('Error while accepting Forum');
+						return $q.reject(errResponse);
+					});
+				};
 				
 
 		} ]);

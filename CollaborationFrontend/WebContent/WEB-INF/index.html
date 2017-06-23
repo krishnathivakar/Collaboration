@@ -1,24 +1,25 @@
 <html>
 <head>
- <!-- <link rel="import" href="Background.html"> -->
  
 <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
 <title>Web Browser</title>
 <style>
- /*  html, body {
+   html, body {
 	text-decoration: none;
-/* 	overflow: scroll; */
-	background: url(http://www.wallpaperup.com/uploads/wallpapers/2012/10/21/20181/cad2441dd3252cf53f12154412286ba0.jpg) no-repeat center center
-		fixed;
+/* 	overflow: scroll; 
+	background: url(https://www.qdtricks.net/wp-content/uploads/2016/09/1080p-wallpaper.jpg) no-repeat center center
+		fixed;*/
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	padding: 30px;
+	padding: 6px;
 	background-repeat:inherit;
 	
-} */
- 
+} 
+/*  .font{
+ color:#ffffff;
+ } */
 #login-dp {
 	min-width: 250px;
 	padding: 14px 14px 0;
@@ -78,6 +79,53 @@
 		background-color: inherit;
 		border-top: 0 none;
 	}
+	}
+	
+	
+	/* views for pagesss style */
+	
+	body {
+    font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 126;
+    right: 0;
+    bottom : 20;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }
 </style>
 
@@ -104,14 +152,24 @@
 <script type="text/javascript" src="Forum/ForumService.js"></script>
 <script type="text/javascript" src="Job/JobService.js"></script>
 <script type="text/javascript" src="Comment/CommentService.js"></script>
+<script type="text/javascript" src="BlogComment/BlogCommentService.js"></script>
+<script type="text/javascript" src="Friend/FriendService.js"></script>
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
 
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
 </head>
-<body ng-app="krishna">
+<body ng-app="krishna" class="font">
 
 
-{{uc.user.name}}
-	<div ng-include="'Background.htm'"></div>
-	<nav class="navbar navbar-default navbar-inverse" role="navigation">
+<font color="#ffffff"><h2>Welcome {{currentUser.name}}</h2></font>
+	
+	<nav class="navbar navbar-default navbar-inverse" role="navigation" ng-controller="UserController as uc">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -128,16 +186,16 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="#blog">Blog</a></li>
+					<li><a href="#blog" ng-show="currentUser.name">Blog</a></li>
 					
-					<li><a href="#forum">Forum</a></li>
-					<li><a href="#job">Job</a></li>
+					<li><a href="#forum" ng-show="currentUser.name">Forum</a></li>
+					<li><a href="#job" ng-show="currentUser.role=='ADMIN'">Job</a></li>
 					<li><a href="#home">Home</a></li>
-					<li class="dropdown">
+					<!-- <li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Views <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<!-- <li><a href="#">Action</a></li> -->
-							<li><a href="#viewB">viewBlog</a></li>
+							<li><a href="#">Action</a></li>
+							<li><a href="#viewB" >viewBlog</a></li>
 							<li><a href="#viewJ">viewJob</a></li>
 							<li><a href="#viewF">viewForum</a></li>
 							 <li><a href="#">Another action</a></li>
@@ -146,7 +204,7 @@
 							<li><a href="#">Separated link</a></li>
 							<li class="divider"></li>
 							<li><a href="#">One more separated link</a></li>
-						</ul></li>
+						</ul></li> -->
 				</ul>
 				<form class="navbar-form navbar-left" role="search">
 					<div class="form-group">
@@ -155,9 +213,12 @@
 					<button type="submit" class="btn btn-default">Submit</button>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
-				<li><a href="#login">Login</a></li>
-				<li class="active"><a href="#register">Register</a></li>
-				<li><a href="#logout">LogOut</a></li> 
+				<li><a href="#login" ng-hide="currentUser.name">Login</a></li>
+				<li class="active"><a href="#register" ng-hide="currentUser.name">Register</a></li>
+				<li><a href="" ng-click="uc.logout()"
+							ng-show="currentUser.name">LogOut</a></li> 
+							
+							
 					<!-- <li><p class="navbar-text">Already have an account?</p></li> -->
 					<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
@@ -211,8 +272,18 @@
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
-
-
+	<div id="mySidenav" class="sidenav" ng-controller="UserController as uc" ><div class="navbar navbar-default navbar-inverse">
+	<div class="container-fluid">
+  							<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+							<a href="#viewB">View Blog</a>
+  							<a href="#viewF">View Forum</a>
+  							<a href="#viewJ">View Job</a>
+  							<a href="#find" >Find Friends</a>
+  							
+  							<a href="#">Contact</a>
+							</div></div></div>
+							<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Click For Views</span>
+	
 <div ng-view></div>
 </body>
 </html>

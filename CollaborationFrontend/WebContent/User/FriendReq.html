@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+<div ng-controller="UserController as uc">
+<div ng-init="uc.fetchAllUsers()">
+<center><font color="red"><h2>Add Buddies</h2></center></font>
+<div>
+<div ng-repeat="all in uc.us" ng-if="all.name != currentUser.name" >
+<nav style="center">
+<table>
+
+<th><h1><span ng-bind="all.name"></span>  </h1></th>
+
+<tr>
+<td><a href="" ng-click="uc.send(all)"><button type="button" class="button"">Add buddy</button></a></td>
+
+<!-- <td><button type="button" class="button">Cancel Request</button></td> -->
+</tr>
+</table>
+</nav>
+</div></div></div></div>
+</body>
+</html>

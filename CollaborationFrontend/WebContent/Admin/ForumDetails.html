@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div><h4 style= "margin: 0px 0px 10px 0px; margin-left: 85%;"><a href="#forum" ng-show="currentUser.name">Create New Forum</a></h4></div>
+<div><h1 style="margin-top: 2em;">{{viewForums.forumTitle}}</h1>
+ <h5>Created by : <b>{{viewForums.userName}}</b> | Created On : <b>{{viewForums.timeStamp}}</b></h5> 
+<h4>{{viewForums.forumContent}}</h4></div>
+<button type="button" ng-click="fcc.accept(viewForums)">Approve</button>  <button type="button">Reject</button>
+</body>
+</html>
