@@ -72,7 +72,7 @@ public class BlogController {
 
 	@PostMapping("/blogs")
 	public ResponseEntity save(@RequestBody Blog blog, HttpSession session) {
-		
+		blog.setStatus("NA");
 		User user = (User) session.getAttribute("user");   
 		System.out.println(blog.getTitle());
 		blog.setUserId(user.getId());
@@ -104,5 +104,11 @@ public class BlogController {
 
 		return new ResponseEntity(blog, HttpStatus.OK);
 	}
-
+	
+	@PutMapping("/acceptBlog")
+	public ResponseEntity acceptBlog(@RequestBody Blog blog){
+		blog.setStatus("A");
+		 blogDAO.saveOrUpdate(blog);
+		return new ResponseEntity(blog, HttpStatus.OK);
+	}
 }

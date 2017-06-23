@@ -1,5 +1,7 @@
 package com.niit.backend.controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.niit.backend.DAO.FriendDAO;
 import com.niit.backend.DAOImpl.UserDAO;
+import com.niit.backend.model.Friend;
 import com.niit.backend.model.User;
 
 @RestController
@@ -27,14 +31,48 @@ public class UserController {
 	@Autowired
 	private UserDAO userDAO;
 
-	
-	
-	  @Autowired HttpSession session;
-	 
+	@Autowired
+	private FriendDAO friendDAO;
 
 	@GetMapping("/users")
-	public List getUsers() {
-		return userDAO.list();
+	public List<User> getUsers(HttpSession session) {
+		/*User user1 = (User) session.getAttribute("user");
+		ArrayList<User> arrlist = new ArrayList<User>();*/
+		List<User> userList = userDAO.list();
+		/*List<Friend> friendList = friendDAO.list(user1.getId());
+		System.out.println("===========");
+		System.out.println(userList.size());
+		System.out.println("===========");
+		System.out.println(friendList.size());
+		System.out.println("===========");
+		for (int i = 0; i <= userList.size()-1; i++) {
+			User user = userList.get(i);
+			System.out.println(user.getEmail());
+
+			for (int j = 0; j <= friendList.size()-1; j++) {
+				Friend friend = friendList.get(j);
+				System.out.println(friend.getFriendName());
+				if (friend.getFriendId() == user.getId()) {
+					System.out.println("--------------------------------------");
+					System.out.println(user.getId());
+					System.out.println(friend.getFriendId());
+					System.out.println("----------------------------------------");
+					userList.remove(i);
+					friendList.remove(j);
+					System.out.println("===========");
+					System.out.println(userList.size());
+					System.out.println("===========");
+					System.out.println(friendList.size());
+					System.out.println("===========");
+				}
+
+			}
+
+			System.out.println(userList.size());
+		}*/
+
+		return userList;
+
 	}
 
 	@DeleteMapping("/users/{id}")
@@ -69,28 +107,28 @@ public class UserController {
 	public ResponseEntity<User> getByEmail(@PathVariable("email") String email) {
 
 		User user = userDAO.getByEmail(email);
-		
+
 		if (user == null) {
 			return new ResponseEntity("No User found for email " + email, HttpStatus.NOT_FOUND);
 		}
 
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
+
 	@PostMapping("/user")
-	public ResponseEntity save(@RequestBody User user)
-	{
+	public ResponseEntity save(@RequestBody User user) {
 		userDAO.save(user);
 		return new ResponseEntity(user, HttpStatus.OK);
 	}
-	@PutMapping("/user")  
-	public ResponseEntity update(@RequestBody User user)
-	{
+
+	@PutMapping("/user")
+	public ResponseEntity update(@RequestBody User user) {
 		userDAO.saveOrUpdate(user);
 		return new ResponseEntity(user, HttpStatus.OK);
-	}	
-	
+	}
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ResponseEntity<?> login(@RequestBody User user,HttpServletRequest request) {
+	public ResponseEntity<?> login(@RequestBody User user, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		User validUser = userDAO.login(user);
 		if (validUser == null) {
@@ -98,29 +136,28 @@ public class UserController {
 			return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
 		} else {
 			session.setAttribute("user", validUser);
-			
-			
+
 			System.out.println(validUser.getEmail());
 			System.out.println(validUser.getName());
-			User user1 = (User) session.getAttribute("user"); 
+			User user1 = (User) session.getAttribute("user");
 			System.out.println(user1.getRole());
 			System.out.println(user1.getMobile());
 			return new ResponseEntity<User>(validUser, HttpStatus.OK);
 		}
 	}
-	@RequestMapping(value="/logout",method=RequestMethod.PUT)
-	public ResponseEntity<?> logout(HttpSession session){
-		User user=(User)session.getAttribute("user");
-		if(user==null){
-			Error error =new Error("Unauthorized user.. Please Login..");  
-			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
-		}
-		else{
-			//user.setOnline(false);
+
+	@RequestMapping(value = "/user/logout", method = RequestMethod.PUT)
+	public ResponseEntity<?> logout(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			Error error = new Error("Unauthorized user.. Please Login..");
+			return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
+		} else {
+			// user.setOnline(false);
 			userDAO.saveOrUpdate(user);
 			session.removeAttribute("user");
 			session.invalidate();
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 	}
-}  
+}

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.backend.DAO.ForumDAO;
+import com.niit.backend.model.Blog;
 import com.niit.backend.model.Forum;
 import com.niit.backend.model.User;
 
@@ -49,7 +50,16 @@ public class ForumController {
 
 		return new ResponseEntity(forum, HttpStatus.OK);
 	}
-	
+	@GetMapping("/acceptedforum")
+	public ResponseEntity<List<Forum>> acceptedForumsList() {
+		List<Forum> listforum = forumDAO.getAcceptedList();
+		return new ResponseEntity<List<Forum>>(listforum, HttpStatus.OK);
+	}
+	@GetMapping("/notAcceptedforum")
+	public ResponseEntity<List<Forum>> notAcceptedForumList() {
+		List<Forum> listforum = forumDAO.getNotAcceptedList();
+		return new ResponseEntity<List<Forum>>(listforum, HttpStatus.OK);
+	}
 	@PostMapping(value = "/forums")
 	public ResponseEntity createForum(@RequestBody Forum forum, HttpSession session) {
 		User user = (User) session.getAttribute("user");  
@@ -80,6 +90,12 @@ public class ForumController {
 			return new ResponseEntity("No Forum found for ID " + id, HttpStatus.NOT_FOUND);
 		}
 
+		return new ResponseEntity(forum, HttpStatus.OK);
+	}
+	@PutMapping("/acceptForum")
+	public ResponseEntity acceptForum(@RequestBody Forum forum){
+		forum.setStatus("A");
+		forumDAO.saveOrUpdate(forum);
 		return new ResponseEntity(forum, HttpStatus.OK);
 	}
 

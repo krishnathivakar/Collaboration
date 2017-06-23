@@ -8,9 +8,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,11 +40,11 @@ public class BlogCommentController {
 		return blogCommentDAO.list();
 	}
 	
-	@GetMapping("/blogcomment/{blogId}")
+	@GetMapping("/blogss/{blogId}")
 	public ResponseEntity getBlogId(@PathVariable("blogId") int blogId, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.setAttribute("blogId", blogId);
-		System.out.println("haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaai");
+		System.out.println("heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
 		System.out.println(blogId);
 		List listcomment = blogCommentDAO.getBlogComments(blogId);
 		if (listcomment == null) {
@@ -63,7 +65,7 @@ public class BlogCommentController {
 		return new ResponseEntity(blogComment, HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "/blogcomment")
+	@PostMapping(value = "/blogcomments")
 	public ResponseEntity createBlogComment(@RequestBody BlogComment blogComment, HttpSession session) {
 		System.out.println("haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaai");
 		
@@ -71,11 +73,38 @@ public class BlogCommentController {
 		
 		System.out.println(user.getEmail());
 		System.out.println(user.getMobile());
-	
+		blogComment.setUserName(user.getName());
+		blogComment.setUserMail(user.getEmail());
+		blogComment.setUserId(user.getId());
 		
-		int blogId = (int) session.getAttribute("forumId");
+		int blogId = (int) session.getAttribute("blogId");
+		System.out.println("________________________________________________________---------------------------");
 		System.out.println(blogId);
+	 blogComment.setBlogId(blogId);
+		blogCommentDAO.save(blogComment);
+		return new ResponseEntity(blogComment, HttpStatus.OK);
+	}
 	
+	@DeleteMapping("/blogcomment/{id}")
+	public ResponseEntity deleteBlogComment(@PathVariable int id) {
+		BlogComment blogComment = blogCommentDAO.getBlogComment(id);
+		if (blogComment == null) {
+			return new ResponseEntity("No Comment found for ID " + id, HttpStatus.NOT_FOUND);
+		} else {
+			blogCommentDAO.delete(id);
+
+			return new ResponseEntity(id, HttpStatus.OK);
+		}
+	}
+	
+	@PutMapping("/blogcomment/{id}")
+	public ResponseEntity updateComment(@PathVariable String id, @RequestBody BlogComment blogComment) {
+
+		blogComment = blogCommentDAO.saveOrUpdate(blogComment);
+
+		if (null == blogComment) {
+			return new ResponseEntity("No Comment found for ID " + id, HttpStatus.NOT_FOUND);
+		}
 
 		return new ResponseEntity(blogComment, HttpStatus.OK);
 	}
