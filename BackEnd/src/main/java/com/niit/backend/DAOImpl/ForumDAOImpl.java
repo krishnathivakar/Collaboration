@@ -2,12 +2,14 @@ package com.niit.backend.DAOImpl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.backend.DAO.ForumDAO;
+import com.niit.backend.model.Blog;
 import com.niit.backend.model.Forum;
 
 @Repository("ForumDAO")
@@ -54,6 +56,31 @@ public class ForumDAOImpl implements ForumDAO {
 		sessionFactory.getCurrentSession().delete(forumToDelete);
 
 	}
+	
+	@Transactional
+	public List<Forum> getAcceptedList() {
+		// TODO Auto-generated method stub
+		String hql = "from Forum where status = " + "'A'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Forum> list = (List<Forum>) query.list();
+		
+		return list;
+	}
+
+	@Transactional
+	public List<Forum> getNotAcceptedList() {
+		// TODO Auto-generated method stub
+		String hql = "from Forum where status = " + "'NA'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Forum> list = (List<Forum>) query.list();
+		
+		return list;
+
+	}
+
+
 
 	
 

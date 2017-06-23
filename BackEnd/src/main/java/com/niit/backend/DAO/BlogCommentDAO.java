@@ -12,7 +12,9 @@ public interface BlogCommentDAO {
 	
 	public BlogComment getBlogComment(int blogCommentId);
 	
-	public void saveOrUpdate(BlogComment bcomment);
+	public BlogComment save(BlogComment bcomment);
+	
+	public BlogComment saveOrUpdate(BlogComment bcomment);
 		
 	public void delete(int id);
 

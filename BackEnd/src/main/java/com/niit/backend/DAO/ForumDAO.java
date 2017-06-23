@@ -7,6 +7,10 @@ import com.niit.backend.model.Forum;
 public interface ForumDAO {
 
 	public List<Forum> list();
+	
+public List<Forum> getAcceptedList();
+	
+	public List<Forum> getNotAcceptedList();
 
 	public Forum get(int forumId);
 

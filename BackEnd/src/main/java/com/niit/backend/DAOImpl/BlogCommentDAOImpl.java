@@ -38,8 +38,9 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 		return listBlogComment;
 	}
 	@Transactional
-	public void saveOrUpdate(BlogComment bcomment) {
+	public BlogComment saveOrUpdate(BlogComment bcomment) {
 		sessionFactory.getCurrentSession().saveOrUpdate(bcomment);
+		return bcomment;
 		
 
 	}
@@ -53,7 +54,7 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 
 	@Transactional
 	public BlogComment getBlogComment(int blogCommentId) {
-		String hql = "from BlogComment where blogId ='" + blogCommentId + "'";
+		String hql = "from BlogComment where id ='" + blogCommentId + "'";
 		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<BlogComment> listComment = (List<BlogComment>) query.list();
@@ -61,5 +62,11 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 			return listComment.get(0);
 		}
 		return null;
+	}
+	@Transactional
+	public BlogComment save(BlogComment bcomment) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().save(bcomment);
+		return bcomment;
 	}
 }

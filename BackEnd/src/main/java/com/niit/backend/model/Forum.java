@@ -29,6 +29,18 @@ public class Forum {
 
 	private String timeStamp = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss").format(Calendar.getInstance().getTime());
 
+	
+	private String status;
+	
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public int getForumId() {
 		return forumId;
 	}

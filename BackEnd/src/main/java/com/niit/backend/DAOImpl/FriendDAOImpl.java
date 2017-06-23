@@ -8,23 +8,25 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.niit.backend.DAO.FriendDAO;
+import com.niit.backend.model.Blog;
 import com.niit.backend.model.Friend;
+import com.niit.backend.model.User;
 
 public class FriendDAOImpl implements FriendDAO {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public FriendDAOImpl(SessionFactory sessionFactory)
-	{
-		this.sessionFactory=sessionFactory;
+	public FriendDAOImpl(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
-
 
 	@Transactional
 	public List<Friend> list() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createQuery("from Friend").list();
+		@SuppressWarnings("unchecked")
+		List<Friend> friendList = sessionFactory.getCurrentSession().createQuery("from Friend").list();
+		return friendList;
 	}
 
 	@Transactional
@@ -51,7 +53,32 @@ public class FriendDAOImpl implements FriendDAO {
 	@Transactional
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().delete(id);
+		Friend friendToDelete = new Friend();
+		friendToDelete.setId(id);
+		sessionFactory.getCurrentSession().delete(friendToDelete);
+	}
+
+	@Transactional
+	public Friend getByFriendName(String name) {
+		String hql = "from Friend where friendName =" + "'" + name + "'";
+		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Friend> listFriend = (List<Friend>) query.list();
+
+		if (listFriend != null && !listFriend.isEmpty()) {
+			return listFriend.get(0);
+		}
+		return null;
+	}
+	
+	@Transactional
+	public List<Friend> list(int userId) {
+		String hql = "from Friend where userId =" + "'" + userId + "'";
+		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Friend> listFriend = (List<Friend>) query.list();
+
+		return listFriend;
 	}
 
 }
