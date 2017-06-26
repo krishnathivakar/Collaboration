@@ -29,7 +29,6 @@ public class UserTest {
 		
 		
 		Blog blog = (Blog) context.getBean("blog");
-		Chat chat = (Chat) context.getBean("chat");
 		Event event = (Event) context.getBean("event");
 		Forum forum = (Forum) context.getBean("forum");
 		Friend friend = (Friend) context.getBean("friend");
@@ -38,7 +37,6 @@ public class UserTest {
 		Comment comment = (Comment) context.getBean("comment");
 		
 		BlogDAO blogDAO = (BlogDAO) context.getBean("blogDAO");
-		ChatDAO chatDAO = (ChatDAO) context.getBean("chatDAO");
 		EventDAO eventDAO = (EventDAO) context.getBean("eventDAO");
 		ForumDAO forumDAO = (ForumDAO) context.getBean("forumDAO");
 		FriendDAO friendDAO = (FriendDAO) context.getBean("friendDAO");
@@ -51,12 +49,7 @@ public class UserTest {
 		blog.setDescription("Hyper");
 		blog.setStatus("Active");
 		
-		chat.setUserName("thiva");
-		chat.setFriendId(101);
-		chat.setFriendname("siva");
-		chat.setMessage("hi bro");
-		chat.setUserId(10);
-		chat.setUserName("krishna");
+		
 		
 		comment.setComments("still");
 		comment.setForumId(12);
@@ -95,7 +88,8 @@ public class UserTest {
 			
 		
 		blogDAO.save(blog);
-		chatDAO.save(chat);
+		
+		
 		commentDAO.saveOrUpdate(comment);
 		eventDAO.save(event);
 		forumDAO.save(forum);

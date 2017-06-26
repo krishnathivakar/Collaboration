@@ -36,9 +36,10 @@ public class FriendDAOImpl implements FriendDAO {
 	}
 
 	@Transactional
-	public void saveOrUpdate(Friend friend) {
+	public Friend saveOrUpdate(Friend friend) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().saveOrUpdate(friend);
+		return friend;
 	}
 
 	@Transactional
@@ -59,16 +60,21 @@ public class FriendDAOImpl implements FriendDAO {
 	}
 
 	@Transactional
-	public Friend getByFriendName(String name) {
-		String hql = "from Friend where friendName =" + "'" + name + "'";
+	public List<Friend> getByFriendName(String name) {
+		String hql = "from Friend where friendName =" + "'" + name + "' and status = " + "'P'";
 		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<Friend> listFriend = (List<Friend>) query.list();
-
-		if (listFriend != null && !listFriend.isEmpty()) {
-			return listFriend.get(0);
-		}
-		return null;
+		return listFriend;
+	}
+	
+	@Transactional
+	public List<Friend> getByFriendAccepted(String name){
+		String hql = "from Friend where friendName =" + "'" + name + "' and status = " + "'A'";
+		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Friend> listFriend = (List<Friend>) query.list();
+		return listFriend;
 	}
 	
 	@Transactional

@@ -22,4 +22,7 @@ public interface UserDAO {
 	public void delete(int id);
 
 	public User login(User user);
+	
+	List<String> getOnlineUsers();
+
 }

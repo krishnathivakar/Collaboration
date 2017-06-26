@@ -6,7 +6,9 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -126,4 +128,13 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return null;
 	}
+	
+	public List<String> getOnlineUsers() {
+		Session session=sessionFactory.openSession();
+		Transaction trans=session.beginTransaction();
+		Query query=session.createQuery("select username from User where online=1");
+		List<String> onlineUsers=query.list();
+		session.close();
+		return onlineUsers;
+		}
 }

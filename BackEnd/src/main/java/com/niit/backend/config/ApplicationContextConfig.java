@@ -46,10 +46,7 @@ import com.niit.backend.model.User;
 @ComponentScan("com.niit.backend")
 @EnableTransactionManagement
 public class ApplicationContextConfig {
-	/*
-	 * private static final Logger logger =
-	 * LoggerFactory.getLogger(ApplicationContextConfig.class);
-	 */
+	
 
 	@Autowired
 	@Bean(name = "dataSource")
@@ -99,9 +96,7 @@ public class ApplicationContextConfig {
 		sessionBuilder.addAnnotatedClass(Friend.class);
 		sessionBuilder.addAnnotatedClass(Job.class);
 		sessionBuilder.addAnnotatedClass(User.class);
-		// sessionBuilder.addAnnotatedClass(User.class);
-
-		/* logger.debug("Ending of the method getSessionFactory"); */
+		
 		return sessionBuilder.buildSessionFactory();
 	}
 
