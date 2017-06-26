@@ -50,10 +50,15 @@ public class FriendController {
 	}
 	
 	@GetMapping("/friends/{name}")  
-	public ResponseEntity<Friend> geByID(@PathVariable("name") String name) {
-
-		Friend friend = friendDAO.getByFriendName(name);
-		return new ResponseEntity<Friend>(friend, HttpStatus.OK);
+	public List<Friend> geByID(@PathVariable("name") String name) {
+		return friendDAO.getByFriendName(name);
+		
+	}
+	
+	@GetMapping("/friendsAccepted/{name}")  
+	public List<Friend> geByFriendAccepted(@PathVariable("name") String name) {
+		return friendDAO.getByFriendAccepted(name);
+		
 	}
 	
 	@PostMapping("/friends")
@@ -71,10 +76,12 @@ public class FriendController {
 		return new ResponseEntity(friend, HttpStatus.OK);
 	}
 	
-	@PutMapping("/friends/{id}")
-	public ResponseEntity acceptFriend(@PathVariable String id,@RequestBody Friend friend){
+	@PutMapping("/friendAccept")
+	public ResponseEntity acceptFriend(@RequestBody Friend friend){
 		
-		friendDAO.saveOrUpdate(friend);
+		friend.setStatus("A");
+		friend = friendDAO.saveOrUpdate(friend);
+		
 		return new ResponseEntity(friend, HttpStatus.OK);
 	}
 	

@@ -62,7 +62,8 @@ public class ForumController {
 	}
 	@PostMapping(value = "/forums")
 	public ResponseEntity createForum(@RequestBody Forum forum, HttpSession session) {
-		User user = (User) session.getAttribute("user");  
+		User user = (User) session.getAttribute("user"); 
+		forum.setStatus("NA");
 		forum.setUserId(user.getId());
 		forum.setUserName(user.getName());
 		forumDAO.saveOrUpdate(forum);

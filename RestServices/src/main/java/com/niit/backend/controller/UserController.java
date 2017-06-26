@@ -146,7 +146,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/user/logout", method = RequestMethod.PUT)
+	@RequestMapping(value = "/logout", method = RequestMethod.PUT)
 	public ResponseEntity<?> logout(HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		if (user == null) {
