@@ -154,6 +154,7 @@
 <script type="text/javascript" src="Comment/CommentService.js"></script>
 <script type="text/javascript" src="BlogComment/BlogCommentService.js"></script>
 <script type="text/javascript" src="Friend/FriendService.js"></script>
+<script type="text/javascript" src="Chat/ChatService.js"></script>
 <script>
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
@@ -164,12 +165,12 @@ function closeNav() {
 }
 </script>
 </head>
-<body ng-app="krishna" class="font">
+<body ng-app="krishna" class="font" ng-controller="UserController as uc">
 
 
-<font color="#ffffff"><h2>Welcome {{currentUser.name}}</h2></font>
+<h2>Welcome {{currentUser.name}}</h2>
 	
-	<nav class="navbar navbar-default navbar-inverse" role="navigation" ng-controller="UserController as uc">
+	<nav class="navbar navbar-default navbar-inverse" role="navigation" >
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -186,7 +187,7 @@ function closeNav() {
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="#blog" ng-show="currentUser.name">Blog</a></li>
+					<li><a href="#blog" ng-show="currentUser.role=='EMPLOYEE'">Blog</a></li>
 					
 					<li><a href="#forum" ng-show="currentUser.name">Forum</a></li>
 					<li><a href="#job" ng-show="currentUser.role=='ADMIN'">Job</a></li>
@@ -272,17 +273,18 @@ function closeNav() {
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
-	<div id="mySidenav" class="sidenav" ng-controller="UserController as uc" ><div class="navbar navbar-default navbar-inverse">
+	<div id="mySidenav" class="sidenav"><div class="navbar navbar-default navbar-inverse">
 	<div class="container-fluid">
   							<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 							<a href="#viewB">View Blog</a>
   							<a href="#viewF">View Forum</a>
   							<a href="#viewJ">View Job</a>
+  							<a href="#chat">Chat</a>
   							<a href="#find" >Find Friends</a>
   							
   							<a href="#">Contact</a>
 							</div></div></div>
-							<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Click For Views</span>
+							<span style="font-size:30px;cursor:pointer" onclick="openNav()"  ng-hide="currentUser.role=='ADMIN'">&#9776; Click For Views</span>
 	
 <div ng-view></div>
 </body>

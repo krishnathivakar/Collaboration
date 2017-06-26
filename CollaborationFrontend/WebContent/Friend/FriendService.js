@@ -11,7 +11,10 @@ app.service('FriendService', ['$http','$q','$rootScope',
 				fetchAllFriends: fetchAllFriends,
 				createFriend: createFriend,
 				updateFriend:updateFriend,
-				fetchAllRequestedfriends:fetchAllRequestedfriends  
+				fetchAllRequestedfriends:fetchAllRequestedfriends  ,
+				fetchRequestedfriends : fetchRequestedfriends,
+				updateFriendReq: updateFriendReq,
+				fetchAcceptedFriends:fetchAcceptedFriends
 			    };
 				
 				
@@ -34,6 +37,23 @@ app.service('FriendService', ['$http','$q','$rootScope',
 									return response.data;
 								}, null);
 					};
+					
+					
+					function fetchRequestedfriends(friendName) {
+						console.log("calling fetchBy User name ")
+						return $http.get(BASE_URL + '/friends/' +friendName).then(
+								function(response) {
+									return response.data;
+								}, null);
+					};
+					
+					function fetchAcceptedFriends(friendName) {
+						console.log("calling fetchBy User name ")
+						return $http.get(BASE_URL + '/friendsAccepted/' +friendName).then(
+								function(response) {
+									return response.data;
+								}, null);
+					};
 
 				function createFriend(friendUser) {
 					console.log("calling create Friend")
@@ -47,10 +67,19 @@ app.service('FriendService', ['$http','$q','$rootScope',
 					});
 				};
 
-				function updateFriend(Friend) {
+				function updateFriend(id) {
 					console.log("calling fetchAllFriends ")
-					return $http.put(BASE_URL + '/friends/', Friend) // 2
-					.then(function(response) {
+					return $http.put(BASE_URL + '/friends/', id).then(function(response) {
+						return response.data;
+					}, function(errResponse) {
+						console.error('Error while updating Friend');
+						return $q.reject(errResponse);
+					});
+				};
+				
+				function updateFriendReq(friend) {
+					console.log("updating Friends Requested")
+					return $http.put(BASE_URL + '/friendAccept/', friend).then(function(response) {
 						return response.data;
 					}, function(errResponse) {
 						console.error('Error while updating Friend');

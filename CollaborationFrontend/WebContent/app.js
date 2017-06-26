@@ -117,14 +117,17 @@ app.config(function($routeProvider) {
 	})
 	
 	.when('/find', {
-		templateUrl : 'User/FriendReq.html'
+		templateUrl : 'User/FriendReq.html',
+		controller : 'UserController',
+		controllerAs : 'uc'
 		
 			
 	})
 	
-	.when('/pending', {
-		templateUrl : 'Friend/FriendPending.html'
+	.when('/chat', {
+		templateUrl : 'Chat/Chat.html'
 	})
+	
 	.otherwise({
 		redirectTo : 'Home/Home.html'
 	});
