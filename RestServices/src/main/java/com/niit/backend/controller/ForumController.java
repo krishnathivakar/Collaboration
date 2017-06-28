@@ -72,11 +72,11 @@ public class ForumController {
 	}
 
 	@DeleteMapping("/forums/{id}")
-	public ResponseEntity deleteForum(@PathVariable int forumId) {
-		Forum forum = forumDAO.get(forumId);
+	public ResponseEntity deleteForum(@PathVariable("id") int forumId) {
+		/*Forum forum = forumDAO.get(forumId);
  		if (forum==null) {
 			return new ResponseEntity("No Forum found for ID " + forumId, HttpStatus.NOT_FOUND);
-		}
+		}*/
  		forumDAO.delete(forumId);
 		return new ResponseEntity(forumId, HttpStatus.OK);
 
