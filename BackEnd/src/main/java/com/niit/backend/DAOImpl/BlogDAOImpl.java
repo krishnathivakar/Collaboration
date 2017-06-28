@@ -29,10 +29,10 @@ public class BlogDAOImpl implements BlogDAO {
 
 	@Transactional
 	public Blog get(int id) {
-		Blog blogListByID = (Blog) sessionFactory.getCurrentSession().get(Blog.class, id);
+		/*Blog blogListByID = (Blog) sessionFactory.getCurrentSession().get(Blog.class, id);
 
-		return blogListByID;
-		/*String hql = "from Blog where id ='" + id + "'";
+		return blogListByID;*/
+		String hql = "from Blog where id ='" + id + "'";
 		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<Blog> listBlog = (List<Blog>) query.list();
@@ -40,7 +40,7 @@ public class BlogDAOImpl implements BlogDAO {
 		if (listBlog != null && !listBlog.isEmpty()) {
 			return listBlog.get(0);
 		}
-		return null;*/
+		return null;
 
 	}
 

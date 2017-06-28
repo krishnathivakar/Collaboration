@@ -31,9 +31,15 @@ public class ForumDAOImpl implements ForumDAO {
 
 	@Transactional
 	public Forum get(int forumId) {
-		Forum forumListByID = (Forum) sessionFactory.getCurrentSession().get(Forum.class, forumId);
+		String hql = "from Forum where id ='" + forumId + "'";
+		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Forum> listForum = (List<Forum>) query.list();
 
-		return forumListByID;
+		if (listForum != null && !listForum.isEmpty()) {
+			return listForum.get(0);
+		}
+		return null;
 
 	}
 
