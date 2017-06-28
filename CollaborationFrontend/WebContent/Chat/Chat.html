@@ -4,7 +4,7 @@ var sessionId = '';
 var name = '';
 //socket connection url and port
 var socket_url = '10.19.224.223';
-var port = '8081';
+var port = '8083';
 $(document).ready(function() {
  $("#form_submit, #form_send_message").submit(function(e) {
      e.preventDefault();
@@ -38,7 +38,7 @@ function openSocket() {
  }
  // Create a new instance of the websocket
  webSocket = new WebSocket("ws://" + socket_url + ":" + port
-         + "/CollobrationFront/chat?name=" + name);
+         + "/CollobrationFrontend/Chat?name=" + name);
  /**
   * Binds functions to the listeners for the websocket.
   */

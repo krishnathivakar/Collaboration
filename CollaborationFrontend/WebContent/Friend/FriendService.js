@@ -14,7 +14,8 @@ app.service('FriendService', ['$http','$q','$rootScope',
 				fetchAllRequestedfriends:fetchAllRequestedfriends  ,
 				fetchRequestedfriends : fetchRequestedfriends,
 				updateFriendReq: updateFriendReq,
-				fetchAcceptedFriends:fetchAcceptedFriends
+				fetchAcceptedFriends:fetchAcceptedFriends,
+				deleteFriendRequest:deleteFriendRequest
 			    };
 				
 				
@@ -86,6 +87,18 @@ app.service('FriendService', ['$http','$q','$rootScope',
 						return $q.reject(errResponse);
 					});
 				};
+				
+				function deleteFriendRequest(id){
+					console.log("Deleting friend Request");
+					return $http.delete(BASE_URL + '/friends/'+id).then(function(response){
+							
+						return response.data;
+							},function(errResponse) {
+								console.error('Error while deleting Friend request');
+								return $q.reject(errResponse);
+							});
+			
+				};
 
 
-		} ]);
+} ]);

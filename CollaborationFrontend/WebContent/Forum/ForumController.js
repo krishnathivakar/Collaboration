@@ -27,6 +27,7 @@ app.controller('ForumController', ['$scope','ForumService','CommentService','$lo
 		 self.notAcceptedForums = notAcceptedForums;
 		self.createComment = createComment;
 		self.accept = accept;
+		self.rejectForum=rejectForum;
 			fetchAllForums();
 			AcceptedForums();
 			reset();
@@ -76,6 +77,7 @@ app.controller('ForumController', ['$scope','ForumService','CommentService','$lo
 						
 					alert("Thank you for creating message")
 					get($scope.recentForum);
+					reset();
 					//$location.path("/home")
 				}, function(errResponse) {
 					console.error('Error while creating Comment.');
@@ -169,15 +171,16 @@ app.controller('ForumController', ['$scope','ForumService','CommentService','$lo
 				$location.path("/adminForumd");
 			}
 			
-			/*function getComment(forumId){
-				console.log("fetchingAllComments...")
-				CommentService.fetchAllComments(forumId) .then(function(d) {
-					self.forumComments = d;
-					console.log(self.forumComments)
-				}, function(errResponse) {
-					console.error('Error while fetching Comments');
-				});
-			};*/
+			function rejectForum(viewForums){
+				ForumService.deleteForumRequest(viewForums.forumId).then(function(d) {
+					self.deleteForumRequestId = d;		    			
+					console.log(self.deleteForumRequestId);
+		    			$location.path("/admin")
+		    	}, function(errResponse){
+		                console.error('Error while deleting ForumRequest');
+		            });
+		    };
+
 			
 			
 			 function submit() {

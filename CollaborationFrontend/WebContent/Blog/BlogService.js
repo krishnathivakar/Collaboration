@@ -16,7 +16,8 @@ app.service('BlogService', [
 				updateBlog : updateBlog,
 				AcceptedBlogs : AcceptedBlogs,
 				notAcceptedBlogs : notAcceptedBlogs,
-				accept: accept
+				accept: accept,
+				deleteBlogRequest:deleteBlogRequest
 			};
 
 			return factory;
@@ -84,6 +85,18 @@ app.service('BlogService', [
 					console.error('Error while accepting Blog');
 					return $q.reject(errResponse);
 				});
+			};
+			
+			function deleteBlogRequest(id){
+				console.log("Deleting Blog Request");
+				return $http.delete(BASE_URL + '/blogs/'+id).then(function(response){
+						
+					return response.data;
+						},function(errResponse) {
+							console.error('Error while deleting Blog request');
+							return $q.reject(errResponse);
+						});
+		
 			};
 
 		} ]);

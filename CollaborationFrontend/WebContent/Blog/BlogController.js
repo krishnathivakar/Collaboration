@@ -20,6 +20,7 @@ app.controller('BlogController', ['$scope','BlogService','BlogCommentService','$
 		    self.AcceptedBlogs = AcceptedBlogs;
 		    self.notAcceptedBlogs = notAcceptedBlogs;
 			self.accept = accept;
+			self.rejectBlog = rejectBlog;
 		    
 			fetchAllBlogs();
 			AcceptedBlogs();
@@ -101,6 +102,16 @@ app.controller('BlogController', ['$scope','BlogService','BlogCommentService','$
 
 				}, null);
 			};
+			
+			function rejectBlog(viewBlogs){
+		    	BlogService.deleteBlogRequest(viewBlogs.id).then(function(d) {
+					self.deleteBlogRequestId = d;		    			
+					console.log(self.deleteBlogRequestId);
+		    			$location.path("/admin")
+		    	}, function(errResponse){
+		                console.error('Error while deleting BlogRequest');
+		            });
+		    };
 
 			function updateBlog(currentBlog){
 				console.log("updateBlog...")

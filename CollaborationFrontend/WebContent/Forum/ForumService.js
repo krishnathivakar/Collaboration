@@ -14,7 +14,8 @@ app.service('ForumService', ['$http','$q','$rootScope',
 			        updateForum:updateForum,
 			        AcceptedForums:AcceptedForums,
 			        notAcceptedForums:notAcceptedForums,
-			        accept: accept
+			        accept: accept,
+			        deleteForumRequest:deleteForumRequest
 			    };
 			 
 			    return factory;
@@ -81,6 +82,17 @@ app.service('ForumService', ['$http','$q','$rootScope',
 						console.error('Error while accepting Forum');
 						return $q.reject(errResponse);
 					});
+				};
+				function deleteForumRequest(id){
+					console.log("Deleting Forum Request");
+					return $http.delete(BASE_URL + '/forums/'+id).then(function(response){
+							
+						return response.data;
+							},function(errResponse) {
+								console.error('Error while deleting Forums request');
+								return $q.reject(errResponse);
+							});
+			
 				};
 				
 

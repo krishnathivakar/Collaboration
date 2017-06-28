@@ -166,9 +166,9 @@ function closeNav() {
 </script>
 </head>
 <body ng-app="krishna" class="font" ng-controller="UserController as uc">
+<p ng-hide="currentUser.name"> <br><br><br></p>
 
-
-<h2>Welcome {{currentUser.name}}</h2>
+<h2  ng-show="currentUser.name">Welcome {{currentUser.name}} You Are Here An {{currentUser.role}}</h2>
 	
 	<nav class="navbar navbar-default navbar-inverse" role="navigation" >
 		<div class="container-fluid">
@@ -189,7 +189,7 @@ function closeNav() {
 				<ul class="nav navbar-nav">
 					<li><a href="#blog" ng-show="currentUser.role=='EMPLOYEE'">Blog</a></li>
 					
-					<li><a href="#forum" ng-show="currentUser.name">Forum</a></li>
+					<li><a href="#forum" ng-show="currentUser.role!='ADMIN'">Forum</a></li>
 					<li><a href="#job" ng-show="currentUser.role=='ADMIN'">Job</a></li>
 					<li><a href="#home">Home</a></li>
 					<!-- <li class="dropdown">

@@ -16,6 +16,8 @@ app.controller('UserController',['$scope','UserService','FriendService','$locati
 								$scope.myOrderBy = x;
 							}  
 							
+							var currentLoginUser = $cookies.getObject('currentLoginUser');
+							console.log(currentLoginUser);
 							/*
 							self.threeInOne = function() {
 								self.fetchAllUsers();
@@ -120,6 +122,16 @@ app.controller('UserController',['$scope','UserService','FriendService','$locati
 														console.error('Error while fetching Accepted list');
 													});
 								};
+								
+								self.deleteFriendRequest = function(req){
+							    	FriendService.deleteFriendRequest(req.id).then(function(d) {
+										self.deleteFriendRequestid = d;		    			
+										console.log(self.deleteFriendRequestid)
+							    			$location.path("/find")
+							    	}, function(errResponse){
+							                console.error('Error while deleting FriendRequest');
+							            });
+							    };
 
 							// self.fatchAllUsers();
 
@@ -216,7 +228,7 @@ app.controller('UserController',['$scope','UserService','FriendService','$locati
 								
 									$rootScope.currentUser = response.data;
 									$cookieStore.put("hi", response.data);
-									$cookies.put('currentLoginUser', response.data);
+									$cookies.putObject('currentLoginUser', response.data);
 									
 									 if($scope.user.role == 'STUDENT'){
 										 $location.path('/home')
