@@ -2,17 +2,17 @@ package com.niit.backend.DAO;
 
 import java.util.List;
 
-import com.niit.backend.model.Chat;
+import com.niit.backend.model.chat;
 
 public interface ChatDAO {
 
-	public List<Chat> list();
+	public List<chat> list();
 	
-	public void save(Chat chat);
+	public void save(chat chat);
 
-	public void saveOrUpdate(Chat chat);
+	public void saveOrUpdate(chat chat);
 
-	public Chat getByFriendId(int id);
+	public chat getByFriendId(int id);
 	
 	public void delete(int id);
 

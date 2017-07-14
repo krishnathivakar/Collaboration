@@ -11,7 +11,7 @@ import com.niit.backend.DAO.FriendDAO;
 import com.niit.backend.DAO.JobDAO;
 import com.niit.backend.DAOImpl.UserDAO;
 import com.niit.backend.model.Blog;
-import com.niit.backend.model.Chat;
+import com.niit.backend.model.chat;
 import com.niit.backend.model.Comment;
 import com.niit.backend.model.Event;
 import com.niit.backend.model.Forum;

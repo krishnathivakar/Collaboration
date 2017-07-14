@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.niit.backend.DAO.ChatDAO;
-import com.niit.backend.model.Chat;
+import com.niit.backend.model.chat;
 
 @Repository("ChatDAO")
 public class ChatDAOImpl implements ChatDAO {
@@ -23,29 +23,29 @@ public class ChatDAOImpl implements ChatDAO {
 
 
 	@Transactional
-	public List<Chat> list() {
+	public List<chat> list() {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("unchecked")
-		List<Chat> chatList = sessionFactory.getCurrentSession().createQuery("from Chat").list();
+		List<chat> chatList = sessionFactory.getCurrentSession().createQuery("from Chat").list();
 		return chatList;
 	}
 
 	@Transactional
-	public void save(Chat chat) {
+	public void save(chat chat) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().save(chat);
 	}
 
 	@Transactional
-	public void saveOrUpdate(Chat chat) {
+	public void saveOrUpdate(chat chat) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().saveOrUpdate(chat);
 	}
 
 	@Transactional
-	public Chat getByFriendId(int id) {
+	public chat getByFriendId(int id) {
 		// TODO Auto-generated method stub
-		Chat chatListByID = (Chat) sessionFactory.getCurrentSession().get(Chat.class, id);
+		chat chatListByID = (chat) sessionFactory.getCurrentSession().get(chat.class, id);
 
 		return chatListByID;
 

@@ -34,7 +34,7 @@ import com.niit.backend.DAOImpl.UserDAO;
 import com.niit.backend.DAOImpl.UserDAOImpl;
 import com.niit.backend.model.Blog;
 import com.niit.backend.model.BlogComment;
-import com.niit.backend.model.Chat;
+import com.niit.backend.model.chat;
 import com.niit.backend.model.Comment;
 import com.niit.backend.model.Event;
 import com.niit.backend.model.Forum;
@@ -89,7 +89,7 @@ public class ApplicationContextConfig {
 
 		sessionBuilder.addAnnotatedClass(Blog.class);
 		sessionBuilder.addAnnotatedClass(BlogComment.class);
-		sessionBuilder.addAnnotatedClass(Chat.class);
+		sessionBuilder.addAnnotatedClass(chat.class);
 		sessionBuilder.addAnnotatedClass(Comment.class);
 		sessionBuilder.addAnnotatedClass(Event.class);
 		sessionBuilder.addAnnotatedClass(Forum.class);

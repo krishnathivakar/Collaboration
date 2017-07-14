@@ -22,7 +22,6 @@ public class User {
 	private String address;
 	private String zipcode;
 	private String mobile;
-	/*private boolean online;*/
 	public int getId() {
 		return id;
 	}
@@ -71,12 +70,6 @@ public class User {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-	/*public boolean isOnline() {
-		return online;
-	}
-	public void setOnline(boolean online) {
-		this.online = online;
-	}*/
 	
 	
 	

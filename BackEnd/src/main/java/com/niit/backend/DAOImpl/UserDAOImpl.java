@@ -36,34 +36,17 @@ public class UserDAOImpl implements UserDAO {
 
 	@Transactional
 	public void save(User user) {
-		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().save(user);
 	}
 
 	@Transactional
 	public void saveOrUpdate(User user) {
-		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().saveOrUpdate(user);
 	}
 
 	@Transactional
 	public User getById(int id) {
-		/*
-		 * String hql = "from User where id =" + "'"+ id +"'";
-		 * org.hibernate.Query query =
-		 * sessionFactory.getCurrentSession().createQuery(hql);
-		 * 
-		 * @SuppressWarnings("unchecked") List<User> listUser = (List<User>)
-		 * query.list();
-		 * 
-		 * if (listUser != null && !listUser.isEmpty()){ return listUser.get(0);
-		 * } return null; Blog blogListByID = (Blog)
-		 * sessionFactory.getCurrentSession().get(Blog.class, id);
-		 * 
-		 * return blogListByID;
-		 *
-		 * 
-		 */
+
 		User userById = (User) sessionFactory.getCurrentSession().get(User.class, id);
 
 		return userById;
@@ -84,21 +67,10 @@ public class UserDAOImpl implements UserDAO {
 
 	@Transactional
 	public User getByEmail(String email) {
-		// TODO Auto-generated method stub
 		User userByEmail = (User) sessionFactory.getCurrentSession().get(User.class, email);
 
 		return userByEmail;
-		/*
-		 * String hql = "from User where email =" + "'"+ email +"'";
-		 * org.hibernate.Query query =
-		 * sessionFactory.getCurrentSession().createQuery(hql);
-		 * 
-		 * @SuppressWarnings("unchecked") List<User> listUser = (List<User>)
-		 * query.list();
-		 * 
-		 * if (listUser != null && !listUser.isEmpty()){ return listUser.get(0);
-		 * } return null;
-		 */
+
 	}
 
 	@Transactional
@@ -115,7 +87,8 @@ public class UserDAOImpl implements UserDAO {
 
 		System.out.println(user.getEmail());
 		System.out.println(user.getPassword());
-		String hql = "from User where email=" + "'" + user.getEmail() + "'and password = " + "'" + user.getPassword() + "'";
+		String hql = "from User where email=" + "'" + user.getEmail() + "'and password = " + "'" + user.getPassword()
+				+ "'";
 
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 
@@ -128,13 +101,13 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return null;
 	}
-	
+
 	public List<String> getOnlineUsers() {
-		Session session=sessionFactory.openSession();
-		Transaction trans=session.beginTransaction();
-		Query query=session.createQuery("select username from User where online=1");
-		List<String> onlineUsers=query.list();
+		Session session = sessionFactory.openSession();
+		Transaction trans = session.beginTransaction();
+		Query query = session.createQuery("select username from User where online=1");
+		List<String> onlineUsers = query.list();
 		session.close();
 		return onlineUsers;
-		}
+	}
 }
