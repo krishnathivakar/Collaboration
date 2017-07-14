@@ -6,7 +6,7 @@
 </head>
 <body style="padding-left: 0em;">
 
-
+<input type="text" class="form-control" placeholder="Search Blog" ng-model="searchText">
 
 
 
@@ -29,7 +29,7 @@ STATUS: {{for.status}}
 <h3>Blogs</h3>
 <div ng-init="bcc.notAcceptedBlogs()">
 <!-- {{bcc.blogsNotAccepted}} -->
-<div class="abc" ng-repeat="bna in bcc.blogsNotAccepted">
+<div class="abc" ng-repeat="bna in bcc.blogsNotAccepted | filter:searchText">
 <h1>TITLE:{{bna.title}} </h1>
 <h6>Authored By:{{bna.username}} </h6><h6>Created On:<span ng-bind="bna.timeStamp"></span></h6> 
 <h6>STATUS:{{bna.status}} </h6>
