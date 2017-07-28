@@ -125,7 +125,8 @@ app.config(function($routeProvider) {
 	})
 	
 	.when('/chat', {
-		templateUrl : 'Chat/chat_forum.html'
+		templateUrl : 'Chat/Chat.html',
+		controller : 'ChatController'
 	})
 	
 	.otherwise({

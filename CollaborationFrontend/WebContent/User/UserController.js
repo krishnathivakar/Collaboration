@@ -222,17 +222,17 @@ app.controller('UserController',['$scope','UserService','FriendService','$locati
 							};*/
   
 							self.login = function() {
-								UserService.login(self.user).then(function(response) {
-									console.log(response.status)
-									$scope.user = response.data;
-								
-									$rootScope.currentUser = response.data;
-									$cookieStore.put("hi", response.data);
-									$cookies.putObject('currentLoginUser', response.data);
+								UserService.login(self.user).then(function(d) {
+									self.user = d;
+									console.log('currentUser : ' +self.user)
+									$rootScope.currentUser =self.user;
+									console.log($rootScope.currentUser);
+									$cookieStore.put('currentUser', self.user);
 									
-									 if($scope.user.role == 'STUDENT'){
+									
+									 if(self.user.role == 'STUDENT'){
 										 $location.path('/home')
-									  }else if($scope.user.role == 'ADMIN'){
+									  }else if(self.user.role == 'ADMIN'){
 										  $location.path('/admin')
 									}else{
 										 $location.path('/blog')
@@ -247,8 +247,7 @@ app.controller('UserController',['$scope','UserService','FriendService','$locati
 							self.logout = function() {
 								console.log("logout")
 								$rootScope.currentUser = {};
-								$cookieStore.remove('hi');
-								$cookies.remove('currentUser');
+								$cookieStore.remove('currentUser');
 								UserService.logout()
 								$location.path('/login')
 

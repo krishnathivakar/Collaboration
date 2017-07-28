@@ -26,7 +26,7 @@ box-shadow: 0 0 10px #ccc;
 <div ng-init="fc.AcceptedForums()">
 <div class="abc" ng-repeat="for in fc.forumsAccept | filter:searchText" >
 <h1><span ng-bind="for.forumTitle"></span></h1> <h6>Created On:<span ng-bind="for.timeStamp"></span></h6> 
-<h5><span ng-bind="for.forumContent" | limitTo : 25"></span></h5>
+<h3><span ng-bind="for.forumContent | limitTo : 25 "></span>....</h3>
 <a href="" ng-click="fc.get(for)"><input type="button" name="button"  value="Read More"/></a>
 <hr>
 </div>
@@ -38,7 +38,7 @@ box-shadow: 0 0 10px #ccc;
 <div class="abc" ng-repeat="u in bc.blogsAccept | filter:searchText">
 <h1>TITLE: <span ng-bind="u.title"></span></h1> <h6>Authored By:<span ng-bind="u.username"></span></h6> 
 <h6>STATUS: <span ng-bind="u.status"></</span></h6>
-<h3>DESC: <span ng-bind="u.description"></span></h3>
+<h3>DESC: <span ng-bind="u.description | limitTo : 30"></span>....</h3>
 <a href="" ng-click="bc.get(u)"><input type="button" name="button"  value="Read More"/></a>
 <hr>
 </div>
@@ -50,7 +50,7 @@ box-shadow: 0 0 10px #ccc;
 <div class="abc" ng-repeat="jo in jc.jobs | filter:searchText"> 
 <h1><span ng-bind="jo.title"></span></h1><h6>Company Name:<span ng-bind="jo.companyName"></span></h6>
 <h3><span ng-bind="jo.qualification"></span></h3><h3><span ng-bind="jo.status"></span></h3>
-<h2>Knowledge Reqd:<span ng-bind="jo.technicalKnowledge"></span></h2>
+<h2>Knowledge Reqd:<span ng-bind="jo.technicalKnowledge | limitTo : 10"></span>....</h2>
  <h6>Created On:<span ng-bind="jo.timeStamp"></span></h6>
 <a href="" ng-click="jc.get(jo)"><input type="button" name="button"  value="Read More"/></a>
 <hr>
