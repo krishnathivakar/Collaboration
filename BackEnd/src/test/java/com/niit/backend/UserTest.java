@@ -3,7 +3,6 @@ package com.niit.backend;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.niit.backend.DAO.BlogDAO;
-import com.niit.backend.DAO.ChatDAO;
 import com.niit.backend.DAO.CommentDAO;
 import com.niit.backend.DAO.EventDAO;
 import com.niit.backend.DAO.ForumDAO;
@@ -11,7 +10,6 @@ import com.niit.backend.DAO.FriendDAO;
 import com.niit.backend.DAO.JobDAO;
 import com.niit.backend.DAOImpl.UserDAO;
 import com.niit.backend.model.Blog;
-import com.niit.backend.model.chat;
 import com.niit.backend.model.Comment;
 import com.niit.backend.model.Event;
 import com.niit.backend.model.Forum;

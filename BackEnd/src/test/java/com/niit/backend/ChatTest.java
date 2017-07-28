@@ -1,4 +1,4 @@
-package com.niit.backend;
+/*package com.niit.backend;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -23,3 +23,4 @@ public class ChatTest {
 		chatDAO.saveOrUpdate(chat);
 	}
 }
+*/

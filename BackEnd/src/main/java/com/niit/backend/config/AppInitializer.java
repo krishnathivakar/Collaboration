@@ -1,4 +1,4 @@
-package com.niit.backend.config;
+/*package com.niit.backend.config;
 
 import java.io.File;
 
@@ -11,9 +11,9 @@ import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 //web.xml - Java based configuration.
-/*@Configuration
+@Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.niit.collaboration")*/
+@ComponentScan(basePackages = "com.niit.collaboration")
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	
@@ -57,4 +57,4 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
         //add listener
         servletContext.addListener(new RequestContextListener());
 	}
-}
+}*/

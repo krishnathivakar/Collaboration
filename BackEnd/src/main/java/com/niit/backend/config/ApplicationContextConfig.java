@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.backend.DAO.BlogCommentDAO;
 import com.niit.backend.DAO.BlogDAO;
-import com.niit.backend.DAO.ChatDAO;
 import com.niit.backend.DAO.CommentDAO;
 import com.niit.backend.DAO.EventDAO;
 import com.niit.backend.DAO.ForumDAO;
@@ -24,7 +23,6 @@ import com.niit.backend.DAO.FriendDAO;
 import com.niit.backend.DAO.JobDAO;
 import com.niit.backend.DAOImpl.BlogCommentDAOImpl;
 import com.niit.backend.DAOImpl.BlogDAOImpl;
-import com.niit.backend.DAOImpl.ChatDAOImpl;
 import com.niit.backend.DAOImpl.CommentDAOImpl;
 import com.niit.backend.DAOImpl.EventDAOImpl;
 import com.niit.backend.DAOImpl.ForumDAOImpl;
@@ -34,13 +32,13 @@ import com.niit.backend.DAOImpl.UserDAO;
 import com.niit.backend.DAOImpl.UserDAOImpl;
 import com.niit.backend.model.Blog;
 import com.niit.backend.model.BlogComment;
-import com.niit.backend.model.chat;
 import com.niit.backend.model.Comment;
 import com.niit.backend.model.Event;
 import com.niit.backend.model.Forum;
 import com.niit.backend.model.Friend;
 import com.niit.backend.model.Job;
 import com.niit.backend.model.User;
+import com.niit.backend.model.Chat;
 
 @Configuration
 @ComponentScan("com.niit.backend")
@@ -89,7 +87,7 @@ public class ApplicationContextConfig {
 
 		sessionBuilder.addAnnotatedClass(Blog.class);
 		sessionBuilder.addAnnotatedClass(BlogComment.class);
-		sessionBuilder.addAnnotatedClass(chat.class);
+	//	sessionBuilder.addAnnotatedClass(Chat.class);
 		sessionBuilder.addAnnotatedClass(Comment.class);
 		sessionBuilder.addAnnotatedClass(Event.class);
 		sessionBuilder.addAnnotatedClass(Forum.class);
@@ -135,11 +133,11 @@ public class ApplicationContextConfig {
 		return new ForumDAOImpl(sessionFactory);
 	}
 
-	@Autowired(required = true)
+	/*@Autowired(required = true)
 	@Bean(name = "chatDAO")
 	public ChatDAO getChatDAO(SessionFactory sessionFactory) {
 		return new ChatDAOImpl(sessionFactory);
-	}
+	}*/
 
 	@Autowired(required = true)
 	@Bean(name = "friendDAO")

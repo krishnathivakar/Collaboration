@@ -1,4 +1,4 @@
-package com.niit.backend.config;
+/*package com.niit.backend.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -34,3 +34,4 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
 
 
+*/
